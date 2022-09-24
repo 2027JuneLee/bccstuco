@@ -55,13 +55,18 @@ function Roster() {
       PICTURES AND  UNDER NAMES?
       SLOGANS?
       ANYTHING?????????
-        Min Kwon (G12) - President -
-        Aaron Yoo (G11) - Vice President -
-        Annie Lim (G12) - Treasurer -
-        Bella Y Kim (G9) - Secretary -
-        Louis Han (G11) - HS Rep -
-        Dayoung Lee (G11) - HS Rep -
-        June Lee (G8) - MS Rep, Website Creator -
+        <h2>Our Proud STUCO Members!</h2>
+            <br></br>
+            <ol>
+              <li>Min Kwon (G12) - President -</li>
+              <li>Aaron Yoo (G11) - Vice President -</li>
+              <li>Annie Lim (G12) - Treasurer -</li>
+              <li>Bella Y Kim (G9) - Secretary -</li>
+              <li>Louis Han (G11) - HS Rep -</li>
+              <li>Dayoung Lee (G11) - HS Rep -</li>
+              <li>June Lee (G8) - MS Rep, Website Creator -</li>
+            </ol> 
+            <h1>Noice</h1>
     </Wrapper>
   );
 }

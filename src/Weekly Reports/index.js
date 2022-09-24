@@ -44,6 +44,7 @@ const Right = styled.div`
   flex-direction: column;
   height: 100%;
   font-weight: bold;
+  font-family: 'Courier Prime', monospace;
 `;
 
 const WallyImage = styled.img`
@@ -74,16 +75,9 @@ flex-direction: row;
 font-size: 24px;
 `;
 
-function MainPage() {
+function WeeklyReports() {
   const navigate = useNavigate();
 
-  function GORAFFLE(){
-    navigate("/raffle")
-  }
-  function NavigateToSite(){
-    Window.open("https://www.usbccollegiate.org/")
-  }
-  
   return (
     <Wrapper>
           <Left>
@@ -113,17 +107,14 @@ function MainPage() {
           </Left>
           <Col md={6} className="d-none d-lg-block">
             <Right>
-              <h1>WE'RE STUCO!</h1>
-
-              DECORATE THIS WITH CSS AND STUFF!!!!!!! THIS IS JUST A SAMPLE!
-              
+              <h1>Here Are: Weekly Reports, where we show current and past work of STUCO!</h1>
             </Right>
           </Col>
 
     </Wrapper>
   );
 }
-export default MainPage;
+export default WeeklyReports;
 
 
 

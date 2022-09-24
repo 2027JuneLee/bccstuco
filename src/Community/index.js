@@ -53,6 +53,7 @@ function Community() {
     return (
     <Wrapper>
         WHAT THE BCC COMMUNITY IS DOING, AND HOW WE'RE HELPING!
+        LETS DISCUSS IT!!!!!!!!!!
     </Wrapper>
   );
 }
