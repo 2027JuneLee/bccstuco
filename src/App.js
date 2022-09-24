@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import MainPage from "./MainPage";
+import FleaMarket from "./Flea Market"
+import Gallery from "./Gallery";
+import Archive from "./Previous Work"
+import Raffle from "./Raffle"
+import Plansandevents from "./Plansandevents"
+import Roster from "./Roster"
+import Community from "./Community"
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div>
+        <Routes>
+          <Route path="/" element={<MainPage />} />
+          <Route path="/fleamarket" element={<FleaMarket />}/>
+          <Route path="/archive" element={<Archive />}/>
+          <Route path="/roster" element={<Roster />}/>
+          <Route path="/raffle" element={<Raffle />}/>
+          <Route path="/plansandevents" element={<Plansandevents />}/>
+          <Route path="/gallery" element={<Gallery />}/>
+          <Route path="/community" element={<Community />}/>
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
 export default App;
+ 
