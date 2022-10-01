@@ -107,7 +107,7 @@ function WeeklyReports() {
           </Left>
           <Col md={6} className="d-none d-lg-block">
             <Right>
-              <h1>Here Are: Weekly Reports, where we show current and past work of STUCO!</h1>
+              <h1>Weekly Reports, where we show current and past work of STUCO!</h1>
             </Right>
           </Col>
 
