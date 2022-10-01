@@ -113,7 +113,7 @@ function MainPage() {
           </Left>
           <Col md={6} className="d-none d-lg-block">
             <Right>
-              <h1>WE'RE STUCO!</h1>
+              <h1>Welcome To BCC STUCO 2022-2023</h1>
 
               DECORATE THIS WITH CSS AND STUFF!!!!!!! THIS IS JUST A SAMPLE!
               
