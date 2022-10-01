@@ -84,11 +84,26 @@ function MainPage() {
       marginBottom: "10px",
     },
   };
+
+  const navigateToPage = (e) => {
+    const id = e.target.id;
+    if (id == "home") {
+      navigate("/");
+    } else {
+      navigate("/" + id);
+    }
+  };
   return (
     <Wrapper>
       <Menu noOverlay styles={styles}>
-        <Link className="menu-item"> Home</Link>
-        <Link className="menu-item"> Flea Market</Link>
+        <Link id="home" onClick={navigateToPage}>
+          {" "}
+          Home
+        </Link>
+        <Link id="flea" onClick={navigateToPage}>
+          {" "}
+          Flea Market
+        </Link>
         <Link>Weekly Reports</Link>
         <Link>Gallery</Link>
         <Link> Roster</Link>
