@@ -1,145 +1,105 @@
 import styled from "styled-components";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Row, Col } from "react-bootstrap";
-
-
+import { slide as Menu } from "react-burger-menu";
+import Logo from "./Wally.png";
 
 const Wrapper = styled.div`
   display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: white;
+  background-size: cover;
+  background-image: url("https://static.wixstatic.com/media/7d4bbb_70b3ede3518a4e67a778eb2c18a14ffb~mv2.jpg/v1/fill/w_1960,h_1420,al_c,q_90,usm_0.66_1.00_0.01,enc_auto/7d4bbb_70b3ede3518a4e67a778eb2c18a14ffb~mv2.jpg");
   font-family: Gill Sans, sans-serif;
 `;
-
-const Left = styled.div`
-  flex-shrink: 1;
-  float: left;
-  width: 10%;
-  font-size: 10px;
-  color: black;
+const HeaderWrapper = styled.div`
   display: flex;
-  flex-direction: column;
-  /* justify-content: center; */
-  align-items: center;
-  height: 100%;
-  padding: 20px;
-  text-align: center;
-  font-weight: bold;
-  font-color: black;
-  background: linear-gradient(to top right, #ffffcc 0%, #00b4d8 100%);
-
+  background-color: white;
+  flex-direction: row;
+  justify-content: center;
 `;
-//background: linear-gradient(to top right, #009900 4%, #cc0000 105%);
-
-//BEAUTIFUL SUMMER COLORSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
-const H4 = styled.div`
-  color: black;
-`
-const Right = styled.div`
-  flex-shrink: 1;
-  display: flex;
-  flex: 1;
-  background-color: #fafad2;
-  font-size: 20px;
-  width: 100vw;
-  flex-direction: column;
-  height: 100%;
-  font-weight: bold;
+const LogoImg = styled.img`
+  width: 100px;
+  height: 100px;
 `;
-
-const WallyImage = styled.img`
-  height: 100vh;
-`;
-const WelcomeTitle = styled.h1`
-  color: black;
+const Title = styled.div`
+  font-size: 50px;
   font-weight: 800;
-  font-size: 15px;
-  margin-bottom: 50px;
+  text-align: center;
+  margin-top: 20px;
+  color: #023e8a;
+  font-family: "Cinzel", serif;
 `;
 
-const Input = styled.input`
-border-radius: 5px;
-background: black;
-font-size: 14px;
-border: none;
-color: white;
-width: 500px;
-height: 25px;
-padding: 8px;
-
-`;
-
-const CONTACT = styled.div`
-display: flex;
-flex-direction: row;
-font-size: 24px;
+const Link = styled.a`
+  width: 100%;
+  margin-bottom: 30px !important;
 `;
 
 function MainPage() {
   const navigate = useNavigate();
 
-  function GORAFFLE(){
-    navigate("/raffle")
-  }
-  function NavigateToSite(){
-    Window.open("https://www.usbccollegiate.org/")
-  }
-  
+  var styles = {
+    bmBurgerButton: {
+      position: "fixed",
+      width: "36px",
+      height: "30px",
+      left: "36px",
+      top: "36px",
+    },
+    bmBurgerBars: {
+      background: "#373a47",
+    },
+    bmBurgerBarsHover: {
+      background: "#a90000",
+    },
+    bmCrossButton: {
+      height: "24px",
+      width: "24px",
+    },
+    bmCross: {
+      background: "#bdc3c7",
+    },
+    bmMenuWrap: {
+      position: "fixed",
+      height: "100%",
+    },
+    bmMenu: {
+      background: "#1d3557",
+      padding: "2.5em 1.5em 0",
+      fontSize: "1.15em",
+      paddingTop: "100px",
+    },
+    bmMorphShape: {
+      fill: "#373a47",
+    },
+    bmItemList: {
+      color: "#b8b7ad",
+      padding: "0.8em",
+    },
+    bmItem: {
+      display: "inline-block",
+
+      marginBottom: "10px",
+    },
+  };
   return (
     <Wrapper>
-          <Left>
-            
-            <img id="locologo" src="https://i.ibb.co/Wz8RYKc/Wally.png" width="75vw" height="75vh"></img>
-            <img onclick="NavigateToSite()" id="locologo" src="https://i.ibb.co/NtXKc6J/image2.png" width="75vw" height="40vh"></img>
-            <br></br>
-            <H4>BCC STUCO 2022-2023</H4>
-            <H4>CLICK ON THE LINKS BELOW! THEY'RE HYPERLINKS!</H4>
-            <WelcomeTitle onClick={() => navigate("/")}>MAIN PAGE</WelcomeTitle>
-            <WelcomeTitle onClick={() => navigate("/fleamarket")}>FLEA MARKET!</WelcomeTitle>
-            <WelcomeTitle onClick={() => navigate("/weekly")}>Weekly Reports</WelcomeTitle>
-            <WelcomeTitle onClick={() => navigate("/gallery")}>Gallery</WelcomeTitle>
-            <WelcomeTitle onClick={() => navigate("/roster")}>Roster</WelcomeTitle>
-            <WelcomeTitle onClick={() => navigate("/community")}>Comm unity</WelcomeTitle>
-            <H4>Made With ❤ And Genuine Coding From June Lee G8 (official BCC website uses Wix)</H4>
-            <h3>Contact: Mail (stuco@usbccollegiate.org) or dm on Instagram (@bcc_stuco)</h3>
-              <CONTACT>
-                  <a href="mailto:stuco@usbccollegiate.org">
-                    <img src="https://fthmb.tqn.com/c05XvnTFkSPwfRR3TY3aZikoDvE=/768x0/filters:no_upscale()/2000px-Gmail_Icon.svg-599998b3b501e80010490cb5.png" alt="HTML tutorial" height="50px" width="50px"></img>
-                  </a>
-                  <br></br>
-                  <a href="https://www.instagram.com/bcc_stuco/">
-                    <img src="https://th.bing.com/th/id/R.26d9974a1feec9905a4e0d5e5ddf8db6?rik=ycoXFwG5Udz08A&pid=ImgRaw&r=0" alt="HTML tutorial" height="50px" width="50px"></img>
-                  </a>
-              </CONTACT>
-          </Left>
-          <Col md={6} className="d-none d-lg-block">
-            <Right>
-              <h1>WE'RE STUCO!</h1>
+      <Menu noOverlay styles={styles}>
+        <Link className="menu-item"> Home</Link>
+        <Link className="menu-item"> Flea Market</Link>
+        <Link>Weekly Reports</Link>
+        <Link>Gallery</Link>
+        <Link> Roster</Link>
+        <Link> Community</Link>
+      </Menu>
 
-              DECORATE THIS WITH CSS AND STUFF!!!!!!! THIS IS JUST A SAMPLE!
-              
-            </Right>
-          </Col>
-
+      <HeaderWrapper>
+        <LogoImg src={Logo} />
+        <Title>Welcome to BCC STUCO 2022-2023</Title>
+      </HeaderWrapper>
     </Wrapper>
   );
 }
 export default MainPage;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
