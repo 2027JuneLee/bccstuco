@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { slide as Menu } from "react-burger-menu";
@@ -10,7 +10,6 @@ const Wrapper = styled.div`
   flex-direction: column;
   height: 100vh;
   background-color: white;
-
   font-family: Gill Sans, sans-serif;
 `;
 const HeaderWrapper = styled.div`
@@ -40,6 +39,23 @@ const Link = styled.a`
   width: 100%;
   margin-bottom: 30px !important;
   font-family: times new roman;
+`;
+
+const BlockWrapper = styled.div`
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  width: 70%;
+  margin-left: 20%;
+`;
+
+const Block = styled.div`
+  width: 25%;
+  height: 100%auto;
+  padding: 20px;
+  background-color: #023e8a;
+  border-radius: 5px;
+  color: white;
 `;
 
 function WeeklyReports() {
@@ -98,6 +114,7 @@ function WeeklyReports() {
       navigate("/" + id);
     }
   };
+
   return (
     <Wrapper>
       <Menu noOverlay styles={styles}>
@@ -134,6 +151,11 @@ function WeeklyReports() {
         />
         <Title>Welcome to BCC STUCO 2022-2023!</Title>
       </HeaderWrapper>
+      <BlockWrapper>
+        <Block>JANUARY</Block>
+        <Block>JANUARY</Block>
+        <Block>JANUARY</Block>
+      </BlockWrapper>
     </Wrapper>
   );
 }
