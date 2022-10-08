@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { slide as Menu } from "react-burger-menu";
 import Logo from "./Wally.png";
+import "../styles/index.css";
 
 const Wrapper = styled.div`
   display: flex;

@@ -4,7 +4,7 @@ import FleaMarket from "./Flea Market";
 import Gallery from "./Gallery";
 import Archive from "./Previous Work";
 import Raffle from "./Raffle";
-import WeeklyReports from "./Weekly Reports";
+import WeeklyReports from "./WeeklyReports";
 import Roster from "./Roster";
 import Community from "./Community";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
