@@ -24,7 +24,7 @@ const LogoImg = styled.img`
 `;
 const Blank = styled.img`
   width: 30px;
-  height: 100px;
+  height: 30px;
 `;
 const Title = styled.div`
   font-size: 50px;
@@ -44,9 +44,14 @@ const Link = styled.a`
 const BlockWrapper = styled.div`
   display: flex;
   justify-content: space-around;
-  flex-direction: row;
+  flex-direction: column;
   width: 70%;
   margin-left: 20%;
+`;
+
+const BlockRow = styled.div`
+display:flex;
+flex-direction:row;
 `;
 
 const Block = styled.div`
@@ -54,6 +59,14 @@ const Block = styled.div`
   height: 100%auto;
   padding: 20px;
   background-color: #023e8a;
+  border-radius: 5px;
+  color: white;
+`;
+const BlockRed = styled.div`
+  width: 25%;
+  height: 100%auto;
+  padding: 20px;
+  background-color: red;
   border-radius: 5px;
   color: white;
 `;
@@ -152,9 +165,35 @@ function WeeklyReports() {
         <Title>Welcome to BCC STUCO 2022-2023!</Title>
       </HeaderWrapper>
       <BlockWrapper>
-        <Block>JANUARY</Block>
-        <Block>JANUARY</Block>
-        <Block>JANUARY</Block>
+        
+        <BlockRow>
+        <BlockRed>2022</BlockRed>
+        </BlockRow>
+
+        <BlockRow>
+        <Blank
+          src={
+            "https://fortbendseniors.org/wp-content/uploads/2019/01/blank-white-square-thumbnail.jpg"
+          }
+        />
+        </BlockRow>
+        
+        <BlockRow>
+          <Block>SEPTEMBER</Block>
+          <Block>OCTOBER</Block>
+          <Block>NOVEMBER</Block>
+          <Block>...</Block>
+        </BlockRow>
+
+        <BlockRow>
+        <Blank
+          src={
+            "https://fortbendseniors.org/wp-content/uploads/2019/01/blank-white-square-thumbnail.jpg"
+          }
+        />
+        </BlockRow>
+
+        <BlockRed>2023</BlockRed>
       </BlockWrapper>
     </Wrapper>
   );
