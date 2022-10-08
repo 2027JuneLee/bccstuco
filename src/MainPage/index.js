@@ -2,12 +2,8 @@ import React from 'react';
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { slide as Menu } from "react-burger-menu";
-<<<<<<< HEAD
-import Logo from "../Wally.png";
-=======
 import Logo from "./Wally.png";
 import "../styles/index.css";
->>>>>>> ee53463d5bdd7008fc068165102391bdfbcdfa89
 
 const Wrapper = styled.div`
   display: flex;
@@ -99,7 +95,7 @@ function MainPage() {
       <Menu noOverlay styles={styles}>
         <Link onClick={() => {navigate("/")}} className="menu-item"> Home</Link>
         <Link onClick={() => {navigate("/fleamarket")}} className="menu-item">Flea Market</Link>
-        <Link onClick={() => {navigate("/weekly")}}>Weekly Reports</Link>
+        <Link onClick={() => {navigate("/reports")}}>Weekly Reports</Link>
         <Link onClick={() => {navigate("/fleamarket")}}>Gallery</Link>
         <Link onClick={() => {navigate("/about")}}> About Us</Link>
         <Link onClick={() => {navigate("/community")}}> Community</Link>
