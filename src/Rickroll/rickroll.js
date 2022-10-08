@@ -10,7 +10,7 @@ const Wrapper = styled.div`
   height: 100vh;
   background-color: white;
   background-size: cover;
-  background-image: url("https://static.wixstatic.com/media/7d4bbb_70b3ede3518a4e67a778eb2c18a14ffb~mv2.jpg/v1/fill/w_1960,h_1420,al_c,q_90,usm_0.66_1.00_0.01,enc_auto/7d4bbb_70b3ede3518a4e67a778eb2c18a14ffb~mv2.jpg");
+  background-image: url("https://i.giphy.com/media/LXONhtCmN32YU/giphy.webp");
   font-family: Gill Sans, sans-serif;
 `;
 const HeaderWrapper = styled.div`
@@ -42,7 +42,7 @@ const Link = styled.a`
   font-family: times new roman;
 `;
 
-function MainPage() {
+function Rick() {
   const navigate = useNavigate();
 
   var styles = {
@@ -92,21 +92,21 @@ function MainPage() {
   return (
     <Wrapper>
       <Menu noOverlay styles={styles}>
-        <Link onClick={() => {navigate("/")}} className="menu-item"> Home</Link>
-        <Link onClick={() => {navigate("/fleamarket")}} className="menu-item">Flea Market</Link>
-        <Link onClick={() => {navigate("/weekly")}}>Weekly Reports</Link>
-        <Link onClick={() => {navigate("/fleamarket")}}>Gallery</Link>
-        <Link onClick={() => {navigate("/about")}}> About Us</Link>
-        <Link onClick={() => {navigate("/community")}}> Community</Link>
-        <h6>Made By June Lee G8 (Official BCC Website uses Wix lol)</h6>
+        <Link className="menu-item"> Home</Link>
+        <Link className="menu-item"> Flea Market</Link>
+        <Link>Weekly Reports</Link>
+        <Link>Gallery</Link>
+        <Link> Roster</Link>
+        <Link> Community</Link>
+        <h6>Made With Genuine Code and ❤ From June Lee G8 (Official BCC Website uses Wix lol)</h6>
       </Menu>
 
       <HeaderWrapper>
         <LogoImg src={Logo} />
         <Blank src={"https://fortbendseniors.org/wp-content/uploads/2019/01/blank-white-square-thumbnail.jpg"}/>
-        <Title>Welcome to BCC STUCO 2022-2023!</Title>
+        <Title>Never Gonna Give You Up</Title>
       </HeaderWrapper>
     </Wrapper>
   );
 }
-export default MainPage;
+export default Rick;
