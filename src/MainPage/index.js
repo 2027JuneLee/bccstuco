@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { slide as Menu } from "react-burger-menu";
@@ -101,15 +101,6 @@ function MainPage() {
   return (
     <Wrapper>
       <Menu noOverlay styles={styles}>
-<<<<<<< HEAD
-        <Link onClick={() => {navigate("/")}} className="menu-item"> Home</Link>
-        <Link onClick={() => {navigate("/fleamarket")}} className="menu-item">Flea Market</Link>
-        <Link onClick={() => {navigate("/weekly")}}>Weekly Reports</Link>
-        <Link onClick={() => {navigate("/fleamarket")}}>Gallery</Link>
-        <Link onClick={() => {navigate("/about")}}> About Us</Link>
-        <Link onClick={() => {navigate("/community")}}> Community</Link>
-        <h6>Made By June Lee G8 (Official BCC Website uses Wix lol)</h6>
-=======
         <Link id="home" onClick={navigateToPage}>
           {" "}
           Home
@@ -118,16 +109,29 @@ function MainPage() {
           {" "}
           Flea Market
         </Link>
-        <Link>Weekly Reports</Link>
-        <Link>Gallery</Link>
-        <Link> Roster</Link>
-        <Link> Community</Link>
->>>>>>> 1b6906a9078d6f9e7a47c088264a0fa4fbeedb8c
+        <Link id="reports" onClick={navigateToPage}>
+          Weekly Reports
+        </Link>
+        <Link id="gallery" onClick={navigateToPage}>
+          Gallery
+        </Link>
+        <Link id="roster" onClick={navigateToPage}>
+          {" "}
+          Roster
+        </Link>
+        <Link id="community" onClick={navigateToPage}>
+          {" "}
+          Community
+        </Link>
       </Menu>
 
       <HeaderWrapper>
         <LogoImg src={Logo} />
-        <Blank src={"https://fortbendseniors.org/wp-content/uploads/2019/01/blank-white-square-thumbnail.jpg"}/>
+        <Blank
+          src={
+            "https://fortbendseniors.org/wp-content/uploads/2019/01/blank-white-square-thumbnail.jpg"
+          }
+        />
         <Title>Welcome to BCC STUCO 2022-2023!</Title>
       </HeaderWrapper>
     </Wrapper>
