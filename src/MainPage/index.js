@@ -89,9 +89,19 @@ function MainPage() {
       marginBottom: "10px",
     },
   };
+
+  const navigateToPage = (e) => {
+    const id = e.target.id;
+    if (id == "home") {
+      navigate("/");
+    } else {
+      navigate("/" + id);
+    }
+  };
   return (
     <Wrapper>
       <Menu noOverlay styles={styles}>
+<<<<<<< HEAD
         <Link onClick={() => {navigate("/")}} className="menu-item"> Home</Link>
         <Link onClick={() => {navigate("/fleamarket")}} className="menu-item">Flea Market</Link>
         <Link onClick={() => {navigate("/weekly")}}>Weekly Reports</Link>
@@ -99,6 +109,20 @@ function MainPage() {
         <Link onClick={() => {navigate("/about")}}> About Us</Link>
         <Link onClick={() => {navigate("/community")}}> Community</Link>
         <h6>Made By June Lee G8 (Official BCC Website uses Wix lol)</h6>
+=======
+        <Link id="home" onClick={navigateToPage}>
+          {" "}
+          Home
+        </Link>
+        <Link id="flea" onClick={navigateToPage}>
+          {" "}
+          Flea Market
+        </Link>
+        <Link>Weekly Reports</Link>
+        <Link>Gallery</Link>
+        <Link> Roster</Link>
+        <Link> Community</Link>
+>>>>>>> 1b6906a9078d6f9e7a47c088264a0fa4fbeedb8c
       </Menu>
 
       <HeaderWrapper>
