@@ -141,17 +141,6 @@ function WeeklyReports() {
         <Link id="reports" onClick={navigateToPage}>
           Weekly Reports
         </Link>
-        <Link id="gallery" onClick={navigateToPage}>
-          Gallery
-        </Link>
-        <Link id="roster" onClick={navigateToPage}>
-          {" "}
-          Roster
-        </Link>
-        <Link id="community" onClick={navigateToPage}>
-          {" "}
-          Community
-        </Link>
         <a href="mailto:stuco@usbccollegiate.org" target="_blank">
           <img
             width="50px"
@@ -163,7 +152,14 @@ function WeeklyReports() {
           <img
             width="45px"
             height="45px"
-            src="https://th.bing.com/th/id/OIP.JtmXSh_uyZBaTg1eXd-NtgHaHa?pid=ImgDet&rs=1"
+            src="https://i.ibb.co/6rdNNw5/image-removebg-preview-4.png"
+          ></img>
+        </a>
+        <a href="https://www.usbccollegiate.org" target="_blank">
+          <img
+            width="150px"
+            height="65px"
+            src="https://i.ibb.co/BqjBZGQ/image2.png"
           ></img>
         </a>
       </Menu>

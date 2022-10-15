@@ -113,17 +113,27 @@ function MainPage() {
         <Link id="reports" onClick={navigateToPage}>
           Weekly Reports
         </Link>
-        <Link id="gallery" onClick={navigateToPage}>
-          Gallery
-        </Link>
-        <Link id="roster" onClick={navigateToPage}>
-          {" "}
-          Roster
-        </Link>
-        <Link id="community" onClick={navigateToPage}>
-          {" "}
-          Community
-        </Link>
+        <a href="mailto:stuco@usbccollegiate.org" target="_blank">
+          <img
+            width="50px"
+            height="30px"
+            src="https://th.bing.com/th/id/R.88d88f1872909358b97ffa695cb97b66?rik=A77az%2fwRYB%2bLrw&riu=http%3a%2f%2flogos-download.com%2fwp-content%2fuploads%2f2016%2f05%2fGmail_logo_icon.png&ehk=8gYQfqc8h6fYCXddKEQE%2blQ7004YVwPu1S2LSHmiUgE%3d&risl=&pid=ImgRaw&r=0"
+          ></img>
+        </a>
+        <a href="https://www.instagram.com/bcc_stuco/" target="_blank">
+          <img
+            width="45px"
+            height="45px"
+            src="https://i.ibb.co/6rdNNw5/image-removebg-preview-4.png"
+          ></img>
+        </a>
+        <a href="https://www.usbccollegiate.org" target="_blank">
+          <img
+            width="150px"
+            height="65px"
+            src="https://i.ibb.co/BqjBZGQ/image2.png"
+          ></img>
+        </a>
       </Menu>
 
       <HeaderWrapper>
