@@ -150,10 +150,14 @@ function WeeklyReports() {
           Community
         </Link>
         <a href="mailto:stuco@usbccollegiate.org" target="_blank">
-        <img width="50px" height="30px" src="https://th.bing.com/th/id/R.88d88f1872909358b97ffa695cb97b66?rik=A77az%2fwRYB%2bLrw&riu=http%3a%2f%2flogos-download.com%2fwp-content%2fuploads%2f2016%2f05%2fGmail_logo_icon.png&ehk=8gYQfqc8h6fYCXddKEQE%2blQ7004YVwPu1S2LSHmiUgE%3d&risl=&pid=ImgRaw&r=0"></img>
+        <img width="50px" height="35px" src="https://th.bing.com/th/id/R.88d88f1872909358b97ffa695cb97b66?rik=A77az%2fwRYB%2bLrw&riu=http%3a%2f%2flogos-download.com%2fwp-content%2fuploads%2f2016%2f05%2fGmail_logo_icon.png&ehk=8gYQfqc8h6fYCXddKEQE%2blQ7004YVwPu1S2LSHmiUgE%3d&risl=&pid=ImgRaw&r=0"></img>
         </a>
         <a href="https://www.instagram.com/bcc_stuco/" target="_blank">
-          <img width="45px" height="45px" src="https://th.bing.com/th/id/OIP.JtmXSh_uyZBaTg1eXd-NtgHaHa?pid=ImgDet&rs=1"></img>
+          <img width="45px" height="45px" src="https://i.ibb.co/6rdNNw5/image-removebg-preview-4.png"></img>
+        </a>
+        <br></br>
+        <a href="https://www.usbccollegiate.org" target="_blank">
+          <img width="120px" height="60px" src="https://i.ibb.co/t8cDszv/image2.png"></img>
         </a>
       </Menu>
 
