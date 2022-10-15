@@ -1,17 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { slide as Menu } from "react-burger-menu";
 import Logo from "./Wally.png";
 import "../styles/index.css";
-
+import Calendar from "react-calendar";
+import "react-calendar/dist/Calendar.css";
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   height: 100vh;
   background-color: white;
   background-size: cover;
-  background-image: url("https://static.wixstatic.com/media/7d4bbb_70b3ede3518a4e67a778eb2c18a14ffb~mv2.jpg/v1/fill/w_1960,h_1420,al_c,q_90,usm_0.66_1.00_0.01,enc_auto/7d4bbb_70b3ede3518a4e67a778eb2c18a14ffb~mv2.jpg");
+  /* background-image: url("https://static.wixstatic.com/media/7d4bbb_70b3ede3518a4e67a778eb2c18a14ffb~mv2.jpg/v1/fill/w_1960,h_1420,al_c,q_90,usm_0.66_1.00_0.01,enc_auto/7d4bbb_70b3ede3518a4e67a778eb2c18a14ffb~mv2.jpg"); */
   font-family: Gill Sans, sans-serif;
 `;
 const HeaderWrapper = styled.div`
@@ -45,7 +46,7 @@ const Link = styled.a`
 
 function MainPage() {
   const navigate = useNavigate();
-
+  const [value, onChange] = useState(new Date());
   var styles = {
     bmBurgerButton: {
       position: "fixed",
@@ -134,6 +135,7 @@ function MainPage() {
           }
         />
         <Title>Welcome to BCC STUCO 2022-2023!</Title>
+        <Calendar onChange={onChange} value={value} />
       </HeaderWrapper>
     </Wrapper>
   );
