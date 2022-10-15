@@ -155,6 +155,13 @@ function WeeklyReports() {
         <a href="https://www.instagram.com/bcc_stuco/" target="_blank">
           <IconImg src={Instagram}></IconImg>
         </a>
+        <a href="https://www.usbccollegiate.org" target="_blank">
+          <img
+            width="75px"
+            height="30px"
+            src="https://i.ibb.co/BqjBZGQ/image2.png"
+          ></img>
+        </a>
       </Menu>
 
       <HeaderWrapper>

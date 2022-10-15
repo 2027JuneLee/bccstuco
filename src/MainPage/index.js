@@ -130,8 +130,8 @@ function MainPage() {
         </a>
         <a href="https://www.usbccollegiate.org" target="_blank">
           <img
-            width="75px"
-            height="30px"
+            width="100px"
+            height="50px"
             src="https://i.ibb.co/BqjBZGQ/image2.png"
           ></img>
         </a>
