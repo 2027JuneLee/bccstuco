@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { slide as Menu } from "react-burger-menu";
 import "../styles/index.css";
 import Logo from "./Wally.png";
+import { Col } from "react-bootstrap";
 
 const Wrapper = styled.div`
   display: flex;
@@ -43,37 +44,32 @@ const Link = styled.a`
 
 const BlockWrapper = styled.div`
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   flex-direction: column;
-  width: 70%;
-  margin-left: 20%;
+  
 `;
 
 const BlockRow = styled.div`
 display:flex;
-flex-direction:row;
+flex-direction:column;
 `;
 
 const Block = styled.div`
-  width: 25%;
+  width: 40%;
   height: 100%auto;
   padding: 20px;
   background-color: #023e8a;
   border-radius: 5px;
   color: white;
 `;
-const BlockRed = styled.div`
-  width: 25%;
-  height: 100%auto;
-  padding: 20px;
-  background-color: red;
-  border-radius: 5px;
-  color: white;
+const BlockTItle = styled.div`
+
+  color: #1d3557;
+  font-size: 50px;
 `;
 
 function WeeklyReports() {
   const navigate = useNavigate();
-
   var styles = {
     bmBurgerButton: {
       position: "fixed",
@@ -153,6 +149,12 @@ function WeeklyReports() {
           {" "}
           Community
         </Link>
+        <a href="mailto:stuco@usbccollegiate.org" target="_blank">
+        <img width="50px" height="30px" src="https://th.bing.com/th/id/R.88d88f1872909358b97ffa695cb97b66?rik=A77az%2fwRYB%2bLrw&riu=http%3a%2f%2flogos-download.com%2fwp-content%2fuploads%2f2016%2f05%2fGmail_logo_icon.png&ehk=8gYQfqc8h6fYCXddKEQE%2blQ7004YVwPu1S2LSHmiUgE%3d&risl=&pid=ImgRaw&r=0"></img>
+        </a>
+        <a href="https://www.instagram.com/bcc_stuco/" target="_blank">
+          <img width="45px" height="45px" src="https://th.bing.com/th/id/OIP.JtmXSh_uyZBaTg1eXd-NtgHaHa?pid=ImgDet&rs=1"></img>
+        </a>
       </Menu>
 
       <HeaderWrapper>
@@ -162,14 +164,16 @@ function WeeklyReports() {
             "https://fortbendseniors.org/wp-content/uploads/2019/01/blank-white-square-thumbnail.jpg"
           }
         />
-        <Title>Welcome to BCC STUCO 2022-2023!</Title>
+        <Title>Weekly Reports!</Title>
       </HeaderWrapper>
+      <Blank
+          src={
+            "https://fortbendseniors.org/wp-content/uploads/2019/01/blank-white-square-thumbnail.jpg"
+          }
+        />
       <BlockWrapper>
-        
-        <BlockRow>
-        <BlockRed>2022</BlockRed>
-        </BlockRow>
-
+      
+        <BlockTItle>2022</BlockTItle>
         <BlockRow>
         <Blank
           src={
@@ -179,12 +183,20 @@ function WeeklyReports() {
         </BlockRow>
         
         <BlockRow>
+          <a href="https://drive.google.com/drive/folders/1YUvUPJGVwspFY7tI1SY7HttHU52ivkOe" target="_blank">
           <Block>SEPTEMBER</Block>
+          </a>
+          <br></br>
+          <a href="https://drive.google.com/drive/folders/1kdujEiqiME5cDrJLZ-wbBgOn1dsNqBp-" target="_blank">
           <Block>OCTOBER</Block>
-          <Block>NOVEMBER</Block>
+          </a>
+          <br></br>
+          <a href="https://drive.google.com/drive/folders/1CRbBgYsIxF0ALuyb54xWkfa4IUWjvkPe" target="_blank">
+          <Block>STUCO DRIVE</Block>
+          <br></br>
+          </a>
           <Block>...</Block>
         </BlockRow>
-
         <BlockRow>
         <Blank
           src={
@@ -192,8 +204,7 @@ function WeeklyReports() {
           }
         />
         </BlockRow>
-
-        <BlockRed>2023</BlockRed>
+    
       </BlockWrapper>
     </Wrapper>
   );
