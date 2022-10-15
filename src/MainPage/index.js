@@ -6,12 +6,22 @@ import Logo from "./Wally.png";
 import "../styles/index.css";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
+import Email from "./email.png";
+import Instagram from "./instagram.png";
+
+const IconImg = styled.img`
+  width: 40px;
+  height: 35px;
+  margin-right: 10px;
+  filter: invert(89%) sepia(14%) saturate(4527%) hue-rotate(339deg)
+    brightness(94%) contrast(86%);
+`;
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   height: 100vh;
-  background-color: white;
-  background-size: cover;
+  background-color: #4682b4;
+  /* background-size: cover; */
   /* background-image: url("https://static.wixstatic.com/media/7d4bbb_70b3ede3518a4e67a778eb2c18a14ffb~mv2.jpg/v1/fill/w_1960,h_1420,al_c,q_90,usm_0.66_1.00_0.01,enc_auto/7d4bbb_70b3ede3518a4e67a778eb2c18a14ffb~mv2.jpg"); */
   font-family: Gill Sans, sans-serif;
 `;
@@ -114,17 +124,19 @@ function MainPage() {
         <Link id="reports" onClick={navigateToPage}>
           Weekly Reports
         </Link>
-        <Link id="gallery" onClick={navigateToPage}>
-          Gallery
-        </Link>
-        <Link id="roster" onClick={navigateToPage}>
-          {" "}
-          Roster
-        </Link>
-        <Link id="community" onClick={navigateToPage}>
-          {" "}
-          Community
-        </Link>
+        <a href="mailto:stuco@usbccollegiate.org" target="_blank">
+          <IconImg src={Email}></IconImg>
+        </a>
+        <a href="https://www.instagram.com/bcc_stuco/" target="_blank">
+          <IconImg src={Instagram}></IconImg>
+        </a>
+        <a href="https://www.usbccollegiate.org" target="_blank">
+          <img
+            width="100px"
+            height="50px"
+            src="https://i.ibb.co/BqjBZGQ/image2.png"
+          ></img>
+        </a>
       </Menu>
 
       <HeaderWrapper>
@@ -135,8 +147,8 @@ function MainPage() {
           }
         />
         <Title>Welcome to BCC STUCO 2022-2023!</Title>
-        <Calendar onChange={onChange} value={value} />
       </HeaderWrapper>
+      <Calendar onChange={onChange} value={value} />
     </Wrapper>
   );
 }

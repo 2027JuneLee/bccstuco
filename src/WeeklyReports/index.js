@@ -149,22 +149,18 @@ function WeeklyReports() {
         <Link id="reports" onClick={navigateToPage}>
           Weekly Reports
         </Link>
-        <Link id="gallery" onClick={navigateToPage}>
-          Gallery
-        </Link>
-        <Link id="roster" onClick={navigateToPage}>
-          {" "}
-          Roster
-        </Link>
-        <Link id="community" onClick={navigateToPage}>
-          {" "}
-          Community
-        </Link>
         <a href="mailto:stuco@usbccollegiate.org" target="_blank">
           <IconImg src={Email}></IconImg>
         </a>
         <a href="https://www.instagram.com/bcc_stuco/" target="_blank">
           <IconImg src={Instagram}></IconImg>
+        </a>
+        <a href="https://www.usbccollegiate.org" target="_blank">
+          <img
+            width="75px"
+            height="30px"
+            src="https://i.ibb.co/BqjBZGQ/image2.png"
+          ></img>
         </a>
       </Menu>
 
