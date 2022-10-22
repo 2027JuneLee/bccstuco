@@ -157,8 +157,8 @@ function WeeklyReports() {
         </a>
         <a href="https://www.usbccollegiate.org" target="_blank">
           <img
-            width="75px"
-            height="30px"
+            width="100px"
+            height="50px"
             src="https://i.ibb.co/BqjBZGQ/image2.png"
           ></img>
         </a>
@@ -186,7 +186,7 @@ function WeeklyReports() {
           href="https://drive.google.com/drive/folders/1kdujEiqiME5cDrJLZ-wbBgOn1dsNqBp-"
           target="_blank"
         >
-          <Month>NOVEMBER</Month>
+          <Month>OCTOBER</Month>
         </MonthLink>
         <Month>DECEMBER</Month>
         <BlockTitle>2023</BlockTitle>
