@@ -2,27 +2,13 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { slide as Menu } from "react-burger-menu";
-import Logo from "./Wally.png";
 import "../styles/index.css";
-import Calendar from "react-calendar";
-import "react-calendar/dist/Calendar.css";
-import Email from "./email.png";
-import Instagram from "./instagram.png";
 
-const IconImg = styled.img`
-  width: 40px;
-  height: 35px;
-  margin-right: 10px;
-  filter: invert(89%) sepia(14%) saturate(4527%) hue-rotate(339deg)
-    brightness(94%) contrast(86%);
-`;
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   height: 100vh;
-  background-color: #4682b4;
-  /* background-size: cover; */
-  /* background-image: url("https://static.wixstatic.com/media/7d4bbb_70b3ede3518a4e67a778eb2c18a14ffb~mv2.jpg/v1/fill/w_1960,h_1420,al_c,q_90,usm_0.66_1.00_0.01,enc_auto/7d4bbb_70b3ede3518a4e67a778eb2c18a14ffb~mv2.jpg"); */
+  background-color: white;
   font-family: Gill Sans, sans-serif;
 `;
 const HeaderWrapper = styled.div`
@@ -37,7 +23,7 @@ const LogoImg = styled.img`
 `;
 const Blank = styled.img`
   width: 30px;
-  height: 100px;
+  height: 30px;
 `;
 const Title = styled.div`
   font-size: 50px;
@@ -54,9 +40,36 @@ const Link = styled.a`
   font-family: times new roman;
 `;
 
-function MainPage() {
+const BlockWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 50px;
+`;
+
+const BlockTitle = styled.div`
+  color: black;
+  font-size: 50px;
+  border-bottom: 2px solid #1d3557;
+  width: 50%;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+`;
+
+const IconImg = styled.img`
+  width: 40px;
+  height: 35px;
+  margin-right: 10px;
+  filter: invert(89%) sepia(14%) saturate(4527%) hue-rotate(339deg)
+    brightness(94%) contrast(86%);
+`;
+
+
+function Work() {
+
   const navigate = useNavigate();
-  const [value, onChange] = useState(new Date());
   var styles = {
     bmBurgerButton: {
       position: "fixed",
@@ -110,8 +123,9 @@ function MainPage() {
       navigate("/" + id);
     }
   };
-  return (
-    <Wrapper>
+    return (
+
+      <Wrapper>
       <Menu noOverlay styles={styles}>
         <Link id="home" onClick={navigateToPage}>
           {" "}
@@ -150,10 +164,9 @@ function MainPage() {
             "https://fortbendseniors.org/wp-content/uploads/2019/01/blank-white-square-thumbnail.jpg"
           }
         />
-        <Title>Welcome to BCC STUCO 2022-2023!</Title>
+        <Title>Weekly Reports!</Title>
       </HeaderWrapper>
-      <Calendar onChange={onChange} value={value} />
     </Wrapper>
   );
 }
-export default MainPage;
+export default Work;
