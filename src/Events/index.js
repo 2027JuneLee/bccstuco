@@ -100,8 +100,8 @@ const EventTitle = styled.div`
   font-weight: 700;
   font-size: 24px;
   position: absolute;
-  top: 10px;
-  left: 100px;
+
+  left: 35%;
   visibility: hidden;
   opacity: 0;
   color: white;
@@ -210,8 +210,8 @@ function Work() {
       <EventsWrapper>
         <EventsRow>
           <EventTile className="tile">
-            <EventImg src={Sports}></EventImg>
             <EventTitle className="title"> Sports Day</EventTitle>
+            <EventImg src={Sports}></EventImg>
           </EventTile>
           <EventTile>dd</EventTile>
         </EventsRow>
