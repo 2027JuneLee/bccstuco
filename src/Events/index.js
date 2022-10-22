@@ -6,6 +6,8 @@ import Logo from "./Wally.png";
 import "../styles/index.css";
 import Email from "./email.png";
 import Instagram from "./instagram.png";
+import Sports from "./sportsday.png";
+import "./index.css";
 
 const Wrapper = styled.div`
   display: flex;
@@ -69,9 +71,46 @@ const IconImg = styled.img`
     brightness(94%) contrast(86%);
 `;
 
+const EventsWrapper = styled.div`
+  margin-left: 200px;
+  margin-top: 50px;
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+`;
 
+const EventsRow = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
+const EventTile = styled.div`
+  width: 40%;
+  height: 150px;
+  margin-right: 30px;
+  text-align: center;
+  position: relative;
+
+  /* &:hover {
+    opacity: 0.2;
+  } */
+`;
+
+const EventTitle = styled.div`
+  font-weight: 700;
+  font-size: 24px;
+  position: absolute;
+  top: 10px;
+  left: 100px;
+  visibility: hidden;
+  opacity: 0;
+  color: white;
+  background: black;
+`;
+const EventImg = styled.img`
+  width: 100%;
+`;
 function Work() {
-
   const navigate = useNavigate();
   var styles = {
     bmBurgerButton: {
@@ -126,9 +165,8 @@ function Work() {
       navigate("/" + id);
     }
   };
-    return (
-
-      <Wrapper>
+  return (
+    <Wrapper>
       <Menu noOverlay styles={styles}>
         <Link id="home" onClick={navigateToPage}>
           {" "}
@@ -141,9 +179,9 @@ function Work() {
         <Link id="reports" onClick={navigateToPage}>
           Weekly Reports
         </Link>
-        <Link id="work" onClick={navigateToPage}>
+        <Link id="events" onClick={navigateToPage}>
           {" "}
-          Our Work
+          Special Events
         </Link>
         <a href="mailto:stuco@usbccollegiate.org" target="_blank">
           <IconImg src={Email}></IconImg>
@@ -167,9 +205,18 @@ function Work() {
             "https://fortbendseniors.org/wp-content/uploads/2019/01/blank-white-square-thumbnail.jpg"
           }
         />
-        <Title>Previous Work</Title>
+        <Title>Special Events</Title>
       </HeaderWrapper>
-      <h1>Sports Day</h1>
+      <EventsWrapper>
+        <EventsRow>
+          <EventTile className="tile">
+            <EventImg src={Sports}></EventImg>
+            <EventTitle className="title"> Sports Day</EventTitle>
+          </EventTile>
+          <EventTile>dd</EventTile>
+        </EventsRow>
+      </EventsWrapper>
+      {/* <h1>Sports Day</h1> */}
       <h1>Halloween</h1>
       <h1>Flea Market</h1>
       <h1>Basketball Team</h1>

@@ -124,9 +124,9 @@ function MainPage() {
         <Link id="reports" onClick={navigateToPage}>
           Weekly Reports
         </Link>
-        <Link id="work" onClick={navigateToPage}>
+        <Link id="events" onClick={navigateToPage}>
           {" "}
-          Our Work
+          Special Events
         </Link>
         <a href="mailto:stuco@usbccollegiate.org" target="_blank">
           <IconImg src={Email}></IconImg>
