@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { slide as Menu } from "react-burger-menu";
-import "../styles/index.css";
 import Logo from "./Wally.png";
+import "../styles/index.css";
 import Email from "./email.png";
 import Instagram from "./instagram.png";
 
@@ -61,17 +61,6 @@ const BlockTitle = styled.div`
   margin-bottom: 20px;
 `;
 
-const Month = styled.div`
-  color: #023e8a;
-  font-size: 45px;
-  margin-top: 10px;
-  font-weight: 700;
-  font-family: "Fuzzy Bubbles", cursive;
-`;
-const MonthLink = styled.a`
-  text-decoration: none;
-`;
-
 const IconImg = styled.img`
   width: 40px;
   height: 35px;
@@ -79,7 +68,10 @@ const IconImg = styled.img`
   filter: invert(89%) sepia(14%) saturate(4527%) hue-rotate(339deg)
     brightness(94%) contrast(86%);
 `;
-function WeeklyReports() {
+
+
+function Work() {
+
   const navigate = useNavigate();
   var styles = {
     bmBurgerButton: {
@@ -134,9 +126,9 @@ function WeeklyReports() {
       navigate("/" + id);
     }
   };
+    return (
 
-  return (
-    <Wrapper>
+      <Wrapper>
       <Menu noOverlay styles={styles}>
         <Link id="home" onClick={navigateToPage}>
           {" "}
@@ -149,7 +141,7 @@ function WeeklyReports() {
         <Link id="reports" onClick={navigateToPage}>
           Weekly Reports
         </Link>
-        <Link id="events" onClick={navigateToPage}>
+        <Link id="work" onClick={navigateToPage}>
           {" "}
           Our Work
         </Link>
@@ -175,28 +167,13 @@ function WeeklyReports() {
             "https://fortbendseniors.org/wp-content/uploads/2019/01/blank-white-square-thumbnail.jpg"
           }
         />
-        <Title>Weekly Reports!</Title>
+        <Title>Previous Work</Title>
       </HeaderWrapper>
-
-      <BlockWrapper>
-        <BlockTitle>2022</BlockTitle>
-        <MonthLink
-          href="https://drive.google.com/drive/folders/1YUvUPJGVwspFY7tI1SY7HttHU52ivkOe"
-          target="_blank"
-        >
-          <Month>SEPTEMBER</Month>
-        </MonthLink>
-        <MonthLink
-          href="https://drive.google.com/drive/folders/1kdujEiqiME5cDrJLZ-wbBgOn1dsNqBp-"
-          target="_blank"
-        >
-          <Month>OCTOBER</Month>
-        </MonthLink>
-        <Month>DECEMBER</Month>
-        <BlockTitle>2023</BlockTitle>
-        <Month>To be added...</Month>
-      </BlockWrapper>
+      <h1>Sports Day</h1>
+      <h1>Halloween</h1>
+      <h1>Flea Market</h1>
+      <h1>Basketball Team</h1>
     </Wrapper>
   );
 }
-export default WeeklyReports;
+export default Work;
