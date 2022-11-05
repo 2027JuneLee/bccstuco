@@ -151,7 +151,7 @@ function WeeklyReports() {
         </Link>
         <Link id="events" onClick={navigateToPage}>
           {" "}
-          Our Work
+          Events
         </Link>
         <a href="mailto:stuco@usbccollegiate.org" target="_blank">
           <IconImg src={Email}></IconImg>
