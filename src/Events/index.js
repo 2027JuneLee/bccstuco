@@ -14,8 +14,8 @@ import "./index.css";
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  height: 100vh;
-  background-color: white;
+  height: 100%;
+  background-color: #edede9;
   font-family: Gill Sans, sans-serif;
 `;
 const HeaderWrapper = styled.div`
@@ -47,24 +47,6 @@ const Link = styled.a`
   font-family: times new roman;
 `;
 
-const BlockWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  margin-top: 50px;
-`;
-
-const BlockTitle = styled.div`
-  color: black;
-  font-size: 50px;
-  border-bottom: 2px solid #1d3557;
-  width: 50%;
-  text-align: center;
-  margin-top: 20px;
-  margin-bottom: 20px;
-`;
-
 const IconImg = styled.img`
   width: 40px;
   height: 35px;
@@ -74,7 +56,7 @@ const IconImg = styled.img`
 `;
 
 const EventsWrapper = styled.div`
-  margin-left: 200px;
+  margin-left: 300px;
   margin-top: 50px;
   width: 70%;
   display: flex;
@@ -85,45 +67,43 @@ const EventsRow = styled.div`
   display: flex;
   flex-direction: row;
 `;
-
+const TileOverlay = styled.div`
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: 0.5s ease;
+  background-color: #f6f4d2;
+`;
 const EventTile = styled.div`
-  width: 40%;
-  height: 150px;
+  width: 50%;
+  height: 300px;
   margin-right: 30px;
   margin-bottom: 100px;
   text-align: center;
   position: relative;
-
-  /* &:hover {
-    opacity: 0.2;
-  } */
+  background-color: white;
 `;
 
 const EventTitle = styled.div`
-  font-weight: 700;
-  font-size: 24px;
+  color: #184e77;
+  font-size: 20px;
   position: absolute;
+  top: 50%;
+  left: 50%;
 
-  left: 35%;
-  visibility: hidden;
-  opacity: 0;
-  color: white;
-  background: black;
-`;
-
-const EventDes = styled.div`
-  font-weight: 700;
-  font-size: 16px;
-  position: absolute;
-  left: 35%;
-  visibility: hidden;
-  opacity: 0;
-  color: white;
-  background: black;
+  transform: translate(-50%, -50%);
+  text-align: center;
 `;
 
 const EventImg = styled.img`
   width: 100%;
+  display: block;
+  height: 100%;
 `;
 function Work() {
   const navigate = useNavigate();
@@ -225,30 +205,32 @@ function Work() {
       <EventsWrapper>
         <EventsRow>
           <EventTile className="tile">
-            <EventTitle className="title"> Sports Day</EventTitle>
             <EventImg src={Sports}></EventImg>
-            <p>Sports Day!</p>
+            <TileOverlay className="overlay">
+              <EventTitle className="title"> Sports Day</EventTitle>
+            </TileOverlay>
           </EventTile>
+
           <EventTile className="tile">
-            <EventTitle className="title"> Halloween</EventTitle>
             <EventImg src={PUMP}></EventImg>
-            <p>Halloween was arranged as a half day from STUCO!</p>
-          </EventTile>
-          <EventTile className="tile">
-            <EventTitle className="title"> Flea Market</EventTitle>
-            <EventImg height="200px" width='130px' src={MISC}></EventImg>
-            <p>Mail Box/Extension Cords</p> 
+            <TileOverlay className="overlay">
+              <EventTitle className="title"> Halloween</EventTitle>
+            </TileOverlay>
           </EventTile>
         </EventsRow>
         <EventsRow>
-          <h1>Coming Soon:</h1>
           <EventTile className="tile">
-            <EventTitle className="title"> Sports Day</EventTitle>
-            <EventImg src={Sports}></EventImg>
-            <p>Sports Day!</p>
+            <EventImg src={MISC}></EventImg>
+            <TileOverlay className="overlay">
+              <EventTitle className="title"> Mail Box</EventTitle>
+            </TileOverlay>
+          </EventTile>
+          <EventTile className="tile">
+            <TileOverlay className="overlay">
+              <EventTitle className="title"> Coming Soon!</EventTitle>
+            </TileOverlay>
           </EventTile>
         </EventsRow>
-
       </EventsWrapper>
     </Wrapper>
   );
