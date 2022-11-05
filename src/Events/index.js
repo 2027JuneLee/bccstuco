@@ -7,6 +7,8 @@ import "../styles/index.css";
 import Email from "./email.png";
 import Instagram from "./instagram.png";
 import Sports from "./sportsday.png";
+import PUMP from "./hallow.png";
+import MISC from "./photo22.png";
 import "./index.css";
 
 const Wrapper = styled.div`
@@ -88,6 +90,7 @@ const EventTile = styled.div`
   width: 40%;
   height: 150px;
   margin-right: 30px;
+  margin-bottom: 100px;
   text-align: center;
   position: relative;
 
@@ -107,6 +110,18 @@ const EventTitle = styled.div`
   color: white;
   background: black;
 `;
+
+const EventDes = styled.div`
+  font-weight: 700;
+  font-size: 16px;
+  position: absolute;
+  left: 35%;
+  visibility: hidden;
+  opacity: 0;
+  color: white;
+  background: black;
+`;
+
 const EventImg = styled.img`
   width: 100%;
 `;
@@ -212,14 +227,29 @@ function Work() {
           <EventTile className="tile">
             <EventTitle className="title"> Sports Day</EventTitle>
             <EventImg src={Sports}></EventImg>
+            <p>Sports Day!</p>
           </EventTile>
-          <EventTile>dd</EventTile>
+          <EventTile className="tile">
+            <EventTitle className="title"> Halloween</EventTitle>
+            <EventImg src={PUMP}></EventImg>
+            <p>Halloween was arranged as a half day from STUCO!</p>
+          </EventTile>
+          <EventTile className="tile">
+            <EventTitle className="title"> Flea Market</EventTitle>
+            <EventImg height="200px" width='130px' src={MISC}></EventImg>
+            <p>Mail Box/Extension Cords</p> 
+          </EventTile>
         </EventsRow>
+        <EventsRow>
+          <h1>Coming Soon:</h1>
+          <EventTile className="tile">
+            <EventTitle className="title"> Sports Day</EventTitle>
+            <EventImg src={Sports}></EventImg>
+            <p>Sports Day!</p>
+          </EventTile>
+        </EventsRow>
+
       </EventsWrapper>
-      {/* <h1>Sports Day</h1> */}
-      <h1>Halloween</h1>
-      <h1>Flea Market</h1>
-      <h1>Basketball Team</h1>
     </Wrapper>
   );
 }
