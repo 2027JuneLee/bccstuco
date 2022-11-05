@@ -8,6 +8,9 @@ import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import Email from "./email.png";
 import Instagram from "./instagram.png";
+import moment from "moment";
+import Popup from "reactjs-popup";
+import "reactjs-popup/dist/index.css";
 
 const IconImg = styled.img`
   width: 40px;
@@ -54,9 +57,20 @@ const Link = styled.a`
   font-family: times new roman;
 `;
 
+const PopupWrapper = styled.div`
+  width: 160px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px 0;
+`;
+
 function MainPage() {
   const navigate = useNavigate();
   const [value, onChange] = useState(new Date());
+  const [open, setOpen] = useState(false);
+  const closeModal = () => setOpen(false);
   var styles = {
     bmBurgerButton: {
       position: "fixed",
@@ -101,7 +115,11 @@ function MainPage() {
       marginBottom: "10px",
     },
   };
-
+  const events = {
+    "2022-11-03": {
+      text: "hello",
+    },
+  };
   const navigateToPage = (e) => {
     const id = e.target.id;
     if (id == "home") {
@@ -109,6 +127,14 @@ function MainPage() {
     } else {
       navigate("/" + id);
     }
+  };
+
+  const onClickDate = (newDate) => {
+    onChange();
+    const date = moment(newDate).format("YYYY-MM-DD");
+    setOpen((o) => !o);
+    // alert(events[date]["text"]);
+    // alert(events[date][text]);
   };
   return (
     <Wrapper>
@@ -152,7 +178,15 @@ function MainPage() {
         />
         <Title>Welcome to BCC STUCO 2022-2023!</Title>
       </HeaderWrapper>
-      <Calendar onChange={onChange} value={value} />
+      <Calendar onChange={onClickDate} value={value} />
+      <Popup open={open} closeOnDocumentClick onClose={closeModal}>
+        <div className="modal">
+          <a className="close" onClick={closeModal}>
+            &times;
+          </a>
+          d
+        </div>
+      </Popup>
     </Wrapper>
   );
 }
