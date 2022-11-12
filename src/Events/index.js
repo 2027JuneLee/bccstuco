@@ -101,9 +101,8 @@ const EventTitle = styled.div`
 `;
 
 const EventImg = styled.img`
-  width: 100%;
-  display: block;
-  height: 100%;
+  width: 500px;
+  height: 300px;
 `;
 function Work() {
   const navigate = useNavigate();
@@ -207,14 +206,14 @@ function Work() {
           <EventTile className="tile">
             <EventImg src={Sports}></EventImg>
             <TileOverlay className="overlay">
-              <EventTitle className="title"> Sports Day</EventTitle>
+            <EventTitle className="title"> Sports Day</EventTitle>
             </TileOverlay>
           </EventTile>
 
           <EventTile className="tile">
             <EventImg src={PUMP}></EventImg>
             <TileOverlay className="overlay">
-              <EventTitle className="title"> Halloween</EventTitle>
+            <EventTitle className="title"> Halloween</EventTitle>
             </TileOverlay>
           </EventTile>
         </EventsRow>
