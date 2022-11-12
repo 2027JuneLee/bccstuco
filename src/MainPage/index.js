@@ -138,8 +138,10 @@ function MainPage() {
     onChange();
     const date = moment(newDate).format("YYYY-MM-DD");
     setOpen((o) => !o);
-    setEvent(events[date]["text"]);
-    alert(events[date]["text"]);
+    const text = events[date] ? events[date]["text"] : "no events";
+
+    setEvent(text);
+
     // alert(events[date][text]);
   };
   return (
