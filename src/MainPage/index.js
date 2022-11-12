@@ -121,9 +121,166 @@ function MainPage() {
     },
   };
   const events = {
-    "2022-11-03": {
-      text: "hello",
+    "1987-11-16": {
+      text: "Release Date of Never Gonna Give You Up",
     },
+    "2022-08-16": {
+      text: "First Day of School Year",
+    },
+    "2022-09-30": {
+      text: "Anti-bullying Day",
+    },
+    "2022-10-27": {
+      text: "Last Day of Q1",
+    },
+    "2022-10-28": {
+      text: "Q2/Halloween Party",
+    },
+    "2022-09-30": {
+      text: "Anti-bullying Day",
+    },
+    "2022-11-21": {
+      text: "Map Testing",
+    },
+    "2022-11-22": {
+      text: "Map Testing",
+    },
+    "2022-11-23": {
+      text: "Map Testing",
+    },
+    "2022-12-16": {
+      text: "Christmas Concert",
+    },
+    "2023-01-11": {
+      text: "Final Exam (S1)",
+    },
+    "2023-01-12": {
+      text: "Final Exam (S1)",
+    },
+    "2023-01-13": {
+      text: "Final Exam (S1)",
+    },
+    "2023-01-16": {
+      text: "Last Day of Q2/S1",
+    },
+    "2023-01-17": {
+      text: "First Day of Q3/S2",
+    },
+    "2023-02-06": {
+      text: "Winter Volunteer Week",
+    },
+    "2023-02-07": {
+      text: "Winter Volunteer Week",
+    },
+    "2023-02-08": {
+      text: "Winter Volunteer Week",
+    },
+    "2023-02-09": {
+      text: "Winter Volunteer Week",
+    },
+    "2023-02-10": {
+      text: "Winter Volunteer Week",
+    },
+    "2023-02-24": {
+      text: "International Day",
+    },
+    "2023-03-09": {
+      text: "Speech Contest",
+    },
+    "2023-03-10": {
+      text: "Speech Contest",
+    },
+    "2023-03-14": {
+      text: "Pi Day/Math Olympiad Contest!!!",
+    },
+    "2023-03-15": {
+      text: "Pi Day/Math Olympiad Contest!!!",
+    },
+    "2023-04-01": {
+      text: "BTS CONCERT (April Fools Day)",
+    },
+    "2023-04-04": {
+      text: "Last Day of Q3",
+    },
+    "2023-04-05": {
+      text: "First Day of Q4",
+    },
+    "2023-04-21": {
+      text: "Spring Field Day",
+    },
+    "2023-05-01": {
+      text: "AP Exam Week",
+    },
+    "2023-05-02": {
+      text: "AP Exam Week",
+    },
+    "2023-05-03": {
+      text: "AP Exam Week",
+    },
+    "2023-05-04": {
+      text: "AP Exam Week",
+    },
+    "2023-05-05": {
+      text: "AP Exam Week",
+    },
+    "2023-05-06": {
+      text: "AP Exam Week",
+    },
+    "2023-05-07": {
+      text: "AP Exam Week",
+    },
+    "2023-05-08": {
+      text: "AP Exam Week",
+    },
+    "2023-05-09": {
+      text: "AP Exam Week",
+    },
+    "2023-05-10": {
+      text: "AP Exam Week",
+    },
+    "2023-05-11": {
+      text: "AP Exam Week",
+    },
+    "2023-05-12": {
+      text: "AP Exam Week",
+    },
+    "2023-05-19": {
+      text: "Graduation Day (Seniors) 🎓",
+    },
+    "2023-05-22": {
+      text: "Map Testing",
+    },
+    "2023-05-23": {
+      text: "Map Testing",
+    },
+    "2023-05-24": {
+      text: "Map Testing",
+    },
+    "2023-05-25": {
+      text: "Art Exhibit",
+    },
+    "2023-05-26": {
+      text: "Art Exhibit",
+    },
+    "2023-05-31": {
+      text: "Science Fair",
+    },
+    "2023-06-07": {
+      text: "Final Exam",
+    },
+    "2023-06-08": {
+      text: "Final Exam",
+    },
+    "2023-06-09": {
+      text: "Final Exam",
+    },
+    "2023-06-13": {
+      text: "Last Day of Q3/S2",
+    },
+    "2023-06-15": {
+      text: "Last Day of School Year",
+    },
+
   };
   const navigateToPage = (e) => {
     const id = e.target.id;
