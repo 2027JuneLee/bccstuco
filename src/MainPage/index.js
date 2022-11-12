@@ -57,6 +57,10 @@ const Link = styled.a`
   font-family: times new roman;
 `;
 
+const Modal = styled.div`
+  width: 10px;
+`;
+
 const PopupWrapper = styled.div`
   width: 160px;
   background-color: #555;
@@ -70,6 +74,7 @@ function MainPage() {
   const navigate = useNavigate();
   const [value, onChange] = useState(new Date());
   const [open, setOpen] = useState(false);
+  const [event, setEvent] = useState("no events");
   const closeModal = () => setOpen(false);
   var styles = {
     bmBurgerButton: {
@@ -133,7 +138,8 @@ function MainPage() {
     onChange();
     const date = moment(newDate).format("YYYY-MM-DD");
     setOpen((o) => !o);
-    // alert(events[date]["text"]);
+    setEvent(events[date]["text"]);
+    alert(events[date]["text"]);
     // alert(events[date][text]);
   };
   return (
@@ -184,7 +190,7 @@ function MainPage() {
           <a className="close" onClick={closeModal}>
             &times;
           </a>
-          d
+          {event}
         </div>
       </Popup>
     </Wrapper>
