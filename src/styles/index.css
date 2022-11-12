@@ -32,3 +32,15 @@ a:hover {
   text-align: center;
   line-height: 16px;
 }
+
+.popup-content {
+  margin: auto;
+  background: rgb(255, 255, 255);
+  width: 100px !important;
+  padding: 8px Im !important;
+}
+
+.close {
+  margin-right: 10px !important;
+  color: red;
+}
