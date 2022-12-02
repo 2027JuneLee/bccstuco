@@ -192,9 +192,18 @@ function WeeklyReports() {
         >
           <Month>OCTOBER</Month>
         </MonthLink>
-        <Month>DECEMBER</Month>
-        <BlockTitle>2023</BlockTitle>
-        <Month>To be added...</Month>
+        <MonthLink
+          href="https://drive.google.com/drive/folders/1EjYdWm0sBib0FDV0CBA0dAiiX1NAtI6J"
+          target="_blank"
+        >
+          <Month>NOVEMBER</Month>
+        </MonthLink>
+        <MonthLink
+          href="https://drive.google.com/drive/folders/1_IZB6P9x2t9VKBSgSsBQ7TfDnT_nZyaW"
+          target="_blank"
+        >
+          <Month>DECEMBER</Month>
+        </MonthLink>
       </BlockWrapper>
     </Wrapper>
   );
