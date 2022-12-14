@@ -142,10 +142,6 @@ function WeeklyReports() {
           {" "}
           Home
         </Link>
-        <Link id="flea" onClick={navigateToPage}>
-          {" "}
-          Flea Market
-        </Link>
         <Link id="reports" onClick={navigateToPage}>
           Weekly Reports
         </Link>

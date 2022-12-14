@@ -11,6 +11,23 @@ import PUMP from "./hallow.png";
 import MISC from "./photo22.png";
 import "./index.css";
 
+const BlockWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 50px;
+`;
+
+const BlockTitle = styled.div`
+  color: black;
+  font-size: 50px;
+  border-bottom: 2px solid #1d3557;
+  width: 50%;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+`;
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -104,6 +121,24 @@ const EventImg = styled.img`
   width: 500px;
   height: 300px;
 `;
+const Month = styled.div`
+  color: #023e8a;
+  font-size: 45px;
+  margin-top: 10px;
+  font-weight: 700;
+  font-family: "Fuzzy Bubbles", cursive;
+`;
+const MonthLink = styled.a`
+  text-decoration: none;
+  text-align: center;
+  align-items: center
+  justify-content: center;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+`;
+
 function Work() {
   const navigate = useNavigate();
   var styles = {
@@ -166,16 +201,12 @@ function Work() {
           {" "}
           Home
         </Link>
-        <Link id="flea" onClick={navigateToPage}>
-          {" "}
-          Flea Market
-        </Link>
         <Link id="reports" onClick={navigateToPage}>
           Weekly Reports
         </Link>
         <Link id="events" onClick={navigateToPage}>
           {" "}
-          Special Events
+          Events
         </Link>
         <a href="mailto:stuco@usbccollegiate.org" target="_blank">
           <IconImg src={Email}></IconImg>
@@ -199,7 +230,7 @@ function Work() {
             "https://fortbendseniors.org/wp-content/uploads/2019/01/blank-white-square-thumbnail.jpg"
           }
         />
-        <Title>Special Events</Title>
+        <Title>Events</Title>
       </HeaderWrapper>
       <EventsWrapper>
         <EventsRow>
@@ -221,7 +252,7 @@ function Work() {
           <EventTile className="tile">
             <EventImg src={MISC}></EventImg>
             <TileOverlay className="overlay">
-              <EventTitle className="title"> Mail Box</EventTitle>
+              <EventTitle className="title"> Mail Box/ Multitab</EventTitle>
             </TileOverlay>
           </EventTile>
           <EventTile className="tile">
@@ -229,6 +260,14 @@ function Work() {
               <EventTitle className="title"> Coming Soon!</EventTitle>
             </TileOverlay>
           </EventTile>
+        </EventsRow>
+        <EventsRow>
+          <MonthLink
+            href="https://drive.google.com/drive/folders/1skdpdM6G6dTrbXJR4kWJtIr5x2GPR2Er"
+            target="_blank"
+          >
+            <Month>Events Gallery (Archive)</Month>
+          </MonthLink>
         </EventsRow>
       </EventsWrapper>
     </Wrapper>

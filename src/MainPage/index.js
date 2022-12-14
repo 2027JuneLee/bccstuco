@@ -11,6 +11,7 @@ import Instagram from "./instagram.png";
 import moment from "moment";
 import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
+import ONE from "./instagram.png";
 
 const IconImg = styled.img`
   width: 40px;
@@ -308,16 +309,12 @@ function MainPage() {
           {" "}
           Home
         </Link>
-        <Link id="flea" onClick={navigateToPage}>
-          {" "}
-          Flea Market
-        </Link>
         <Link id="reports" onClick={navigateToPage}>
           Weekly Reports
         </Link>
         <Link id="events" onClick={navigateToPage}>
           {" "}
-          Special Events
+          Events
         </Link>
         <a href="mailto:stuco@usbccollegiate.org" target="_blank">
           <IconImg src={Email}></IconImg>
