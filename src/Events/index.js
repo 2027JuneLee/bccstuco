@@ -1,276 +1,167 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
-import { slide as Menu } from "react-burger-menu";
-import Logo from "./Wally.png";
-import "../styles/index.css";
-import Email from "./email.png";
-import Instagram from "./instagram.png";
-import Sports from "./sportsday.png";
-import PUMP from "./hallow.png";
-import MISC from "./photo22.png";
-import "./index.css";
+import { Container, Row, Col, Button, Modal, Form } from "react-bootstrap";
+import NavBar from "../components/NavBar";
+import Footer from "../components/Footer";
+import EventCard from "../components/EventCard";
+import { supabase } from "../supabaseClient";
 
-const BlockWrapper = styled.div`
+const PageWrapper = styled.div`
+  padding-top: 80px;
+  min-height: 100vh;
   display: flex;
-  justify-content: center;
-  align-items: center;
   flex-direction: column;
-  margin-top: 50px;
+  font-family: "Gill Sans", sans-serif;
 `;
 
-const BlockTitle = styled.div`
-  color: black;
-  font-size: 50px;
-  border-bottom: 2px solid #1d3557;
-  width: 50%;
+const Title = styled.h1`
+  font-family: "Cinzel", serif;
+  color: #023e8a;
   text-align: center;
-  margin-top: 20px;
+  margin-bottom: 40px;
+`;
+
+const AdminControls = styled.div`
+  text-align: right;
   margin-bottom: 20px;
 `;
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  background-color: #edede9;
-  font-family: Gill Sans, sans-serif;
-`;
-const HeaderWrapper = styled.div`
-  display: flex;
-  background-color: white;
-  flex-direction: row;
-  justify-content: center;
-`;
-const LogoImg = styled.img`
-  width: 100px;
-  height: 100px;
-`;
-const Blank = styled.img`
-  width: 30px;
-  height: 30px;
-`;
-const Title = styled.div`
-  font-size: 50px;
-  font-weight: 800;
-  text-align: center;
-  margin-top: 20px;
-  color: #023e8a;
-  font-family: "Cinzel", serif;
-`;
 
-const Link = styled.a`
-  width: 100%;
-  margin-bottom: 30px !important;
-  font-family: times new roman;
-`;
+const Events = () => {
+  const [events, setEvents] = useState([]);
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [showLogin, setShowLogin] = useState(false);
+  const [password, setPassword] = useState("");
+  const [showAddModal, setShowAddModal] = useState(false);
 
-const IconImg = styled.img`
-  width: 40px;
-  height: 35px;
-  margin-right: 10px;
-  filter: invert(89%) sepia(14%) saturate(4527%) hue-rotate(339deg)
-    brightness(94%) contrast(86%);
-`;
+  // New Event Form State
+  const [newEvent, setNewEvent] = useState({ title: "", date: "", body: "", image_url: "" });
 
-const EventsWrapper = styled.div`
-  margin-left: 300px;
-  margin-top: 50px;
-  width: 70%;
-  display: flex;
-  flex-direction: column;
-`;
+  useEffect(() => {
+    fetchEvents();
+  }, []);
 
-const EventsRow = styled.div`
-  display: flex;
-  flex-direction: row;
-`;
-const TileOverlay = styled.div`
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 100%;
-  width: 100%;
-  opacity: 0;
-  transition: 0.5s ease;
-  background-color: #f6f4d2;
-`;
-const EventTile = styled.div`
-  width: 50%;
-  height: 300px;
-  margin-right: 30px;
-  margin-bottom: 100px;
-  text-align: center;
-  position: relative;
-  background-color: white;
-`;
+  const fetchEvents = async () => {
+    const { data, error } = await supabase
+      .from('events')
+      .select('*')
+      .order('date', { ascending: true });
 
-const EventTitle = styled.div`
-  color: #184e77;
-  font-size: 20px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-
-  transform: translate(-50%, -50%);
-  text-align: center;
-`;
-
-const EventImg = styled.img`
-  width: 500px;
-  height: 300px;
-`;
-const Month = styled.div`
-  color: #023e8a;
-  font-size: 45px;
-  margin-top: 10px;
-  font-weight: 700;
-  font-family: "Fuzzy Bubbles", cursive;
-`;
-const MonthLink = styled.a`
-  text-decoration: none;
-  text-align: center;
-  align-items: center
-  justify-content: center;
-  position: absolute;
-  left: 0;
-  right: 0;
-  margin: auto;
-`;
-
-function Work() {
-  const navigate = useNavigate();
-  var styles = {
-    bmBurgerButton: {
-      position: "fixed",
-      width: "36px",
-      height: "30px",
-      left: "36px",
-      top: "36px",
-    },
-    bmBurgerBars: {
-      background: "#373a47",
-    },
-    bmBurgerBarsHover: {
-      background: "#a90000",
-    },
-    bmCrossButton: {
-      height: "24px",
-      width: "24px",
-    },
-    bmCross: {
-      background: "#bdc3c7",
-    },
-    bmMenuWrap: {
-      position: "fixed",
-      height: "100%",
-    },
-    bmMenu: {
-      background: "#1d3557",
-      padding: "2.5em 1.5em 0",
-      fontSize: "1.15em",
-      paddingTop: "100px",
-    },
-    bmMorphShape: {
-      fill: "#373a47",
-    },
-    bmItemList: {
-      color: "#b8b7ad",
-      padding: "0.8em",
-    },
-    bmItem: {
-      display: "inline-block",
-
-      marginBottom: "10px",
-    },
+    if (error) console.error('Error fetching events:', error);
+    else setEvents(data);
   };
 
-  const navigateToPage = (e) => {
-    const id = e.target.id;
-    if (id == "home") {
-      navigate("/");
+  const handleLogin = () => {
+    if (password === "bccstuco2025") {
+      setIsAdmin(true);
+      setShowLogin(false);
     } else {
-      navigate("/" + id);
+      alert("Incorrect password");
     }
   };
+
+  const handleAddEvent = async () => {
+    const { error } = await supabase
+      .from('events')
+      .insert([newEvent]);
+
+    if (error) {
+      alert("Error adding event: " + error.message);
+    } else {
+      setShowAddModal(false);
+      setNewEvent({ title: "", date: "", body: "", image_url: "" });
+      fetchEvents();
+    }
+  };
+
+  const handleDelete = async (id) => {
+    if (window.confirm("Are you sure you want to delete this event?")) {
+      const { error } = await supabase
+        .from('events')
+        .delete()
+        .eq('id', id);
+
+      if (error) alert("Error deleting: " + error.message);
+      else fetchEvents();
+    }
+  };
+
   return (
-    <Wrapper>
-      <Menu noOverlay styles={styles}>
-        <Link id="home" onClick={navigateToPage}>
-          {" "}
-          Home
-        </Link>
-        <Link id="reports" onClick={navigateToPage}>
-          Weekly Reports
-        </Link>
-        <Link id="events" onClick={navigateToPage}>
-          {" "}
-          Events
-        </Link>
-        <a href="mailto:stuco@usbccollegiate.org" target="_blank">
-          <IconImg src={Email}></IconImg>
-        </a>
-        <a href="https://www.instagram.com/bcc_stuco/" target="_blank">
-          <IconImg src={Instagram}></IconImg>
-        </a>
-        <a href="https://www.usbccollegiate.org" target="_blank">
-          <img
-            width="100px"
-            height="40px"
-            src="https://i.ibb.co/BqjBZGQ/image2.png"
-          ></img>
-        </a>
-      </Menu>
+    <>
+      <NavBar />
+      <PageWrapper>
+        <Container>
+          <Title>Upcoming Events</Title>
 
-      <HeaderWrapper>
-        <LogoImg src={Logo} />
-        <Blank
-          src={
-            "https://fortbendseniors.org/wp-content/uploads/2019/01/blank-white-square-thumbnail.jpg"
-          }
-        />
-        <Title>Events</Title>
-      </HeaderWrapper>
-      <EventsWrapper>
-        <EventsRow>
-          <EventTile className="tile">
-            <EventImg src={Sports}></EventImg>
-            <TileOverlay className="overlay">
-            <EventTitle className="title"> Sports Day</EventTitle>
-            </TileOverlay>
-          </EventTile>
+          <AdminControls>
+            {!isAdmin ? (
+              <Button variant="link" onClick={() => setShowLogin(true)} style={{ fontSize: '0.8rem', color: '#ccc' }}>Admin Login</Button>
+            ) : (
+              <>
+                <span className="me-3 text-success">Admin Mode Active</span>
+                <Button variant="primary" onClick={() => setShowAddModal(true)}>+ Add Event</Button>
+              </>
+            )}
+          </AdminControls>
 
-          <EventTile className="tile">
-            <EventImg src={PUMP}></EventImg>
-            <TileOverlay className="overlay">
-            <EventTitle className="title"> Halloween</EventTitle>
-            </TileOverlay>
-          </EventTile>
-        </EventsRow>
-        <EventsRow>
-          <EventTile className="tile">
-            <EventImg src={MISC}></EventImg>
-            <TileOverlay className="overlay">
-              <EventTitle className="title"> Mail Box/ Multitab</EventTitle>
-            </TileOverlay>
-          </EventTile>
-          <EventTile className="tile">
-            <TileOverlay className="overlay">
-              <EventTitle className="title"> Coming Soon!</EventTitle>
-            </TileOverlay>
-          </EventTile>
-        </EventsRow>
-        <EventsRow>
-          <MonthLink
-            href="https://drive.google.com/drive/folders/1skdpdM6G6dTrbXJR4kWJtIr5x2GPR2Er"
-            target="_blank"
-          >
-            <Month>Events Gallery (Archive)</Month>
-          </MonthLink>
-        </EventsRow>
-      </EventsWrapper>
-    </Wrapper>
+          <Row>
+            {events.length === 0 ? (
+              <p className="text-center">No upcoming events found.</p>
+            ) : (
+              events.map(event => (
+                <Col key={event.id} md={4}>
+                  <EventCard event={event} />
+                  {isAdmin && (
+                    <Button variant="danger" size="sm" className="mt-2 w-100" onClick={() => handleDelete(event.id)}>
+                      Delete Event
+                    </Button>
+                  )}
+                </Col>
+              ))
+            )}
+          </Row>
+        </Container>
+      </PageWrapper>
+      <Footer />
+
+      {/* Admin Login Modal */}
+      <Modal show={showLogin} onHide={() => setShowLogin(false)}>
+        <Modal.Header closeButton><Modal.Title>Admin Login</Modal.Title></Modal.Header>
+        <Modal.Body>
+          <Form.Control type="password" placeholder="Enter Password" value={password} onChange={(e) => setPassword(e.target.value)} />
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="primary" onClick={handleLogin}>Login</Button>
+        </Modal.Footer>
+      </Modal>
+
+      {/* Add Event Modal */}
+      <Modal show={showAddModal} onHide={() => setShowAddModal(false)}>
+        <Modal.Header closeButton><Modal.Title>Add New Event</Modal.Title></Modal.Header>
+        <Modal.Body>
+          <Form.Group className="mb-3">
+            <Form.Label>Title</Form.Label>
+            <Form.Control type="text" value={newEvent.title} onChange={(e) => setNewEvent({ ...newEvent, title: e.target.value })} />
+          </Form.Group>
+          <Form.Group className="mb-3">
+            <Form.Label>Date</Form.Label>
+            <Form.Control type="date" value={newEvent.date} onChange={(e) => setNewEvent({ ...newEvent, date: e.target.value })} />
+          </Form.Group>
+          <Form.Group className="mb-3">
+            <Form.Label>Image URL (Optional)</Form.Label>
+            <Form.Control type="text" value={newEvent.image_url} onChange={(e) => setNewEvent({ ...newEvent, image_url: e.target.value })} />
+          </Form.Group>
+          <Form.Group className="mb-3">
+            <Form.Label>Description</Form.Label>
+            <Form.Control as="textarea" rows={3} value={newEvent.body} onChange={(e) => setNewEvent({ ...newEvent, body: e.target.value })} />
+          </Form.Group>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setShowAddModal(false)}>Cancel</Button>
+          <Button variant="primary" onClick={handleAddEvent}>Save Event</Button>
+        </Modal.Footer>
+      </Modal>
+    </>
   );
-}
-export default Work;
+};
+
+export default Events;
