@@ -55,15 +55,6 @@ const Events = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [uploading, setUploading] = useState(false);
 
-  useEffect(() => {
-    fetchEvents();
-    // Check for admin cookie
-    const adminCookie = getCookie("adminAuthenticated");
-    if (adminCookie === "true") {
-      setIsAdmin(true);
-    }
-  }, [fetchEvents]);
-
   const fetchEvents = useCallback(async () => {
     const today = new Date().toISOString().split('T')[0];
     const isUpcomingFilter = filter === "upcoming";
@@ -90,6 +81,15 @@ const Events = () => {
       setEvents(data);
     }
   }, [filter]);
+
+  useEffect(() => {
+    fetchEvents();
+    // Check for admin cookie
+    const adminCookie = getCookie("adminAuthenticated");
+    if (adminCookie === "true") {
+      setIsAdmin(true);
+    }
+  }, [fetchEvents]);
 
   /* Removed handleLogin, password, and showLogin state as login is now handled in /admin */
 
