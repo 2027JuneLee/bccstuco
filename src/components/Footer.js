@@ -33,15 +33,6 @@ const SocialContainer = styled.div`
     margin-bottom: 20px;
 `;
 
-const CopyRight = styled.div`
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  margin-top: 20px;
-  padding-top: 20px;
-  text-align: center;
-  font-size: 0.8rem;
-  color: #aaa;
-`;
-
 const Footer = () => {
     const instagramIcon = require("../MainPage/instagram.png");
     const emailIcon = require("../MainPage/email.png");

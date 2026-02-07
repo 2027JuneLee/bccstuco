@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { slide as Menu } from "react-burger-menu";
@@ -128,7 +128,7 @@ function WeeklyReports() {
 
   const navigateToPage = (e) => {
     const id = e.target.id;
-    if (id == "home") {
+    if (id === "home") {
       navigate("/");
     } else {
       navigate("/" + id);
@@ -149,17 +149,18 @@ function WeeklyReports() {
           {" "}
           Events
         </Link>
-        <a href="mailto:stuco@usbccollegiate.org" target="_blank">
+        <a href="mailto:stuco@usbccollegiate.org" target="_blank" rel="noreferrer">
           <IconImg src={Email}></IconImg>
         </a>
-        <a href="https://www.instagram.com/bcc_stuco/" target="_blank">
+        <a href="https://www.instagram.com/bcc_stuco/" target="_blank" rel="noreferrer">
           <IconImg src={Instagram}></IconImg>
         </a>
-        <a href="https://www.usbccollegiate.org" target="_blank">
+        <a href="https://www.usbccollegiate.org" target="_blank" rel="noreferrer">
           <img
             width="100px"
             height="40px"
             src="https://i.ibb.co/BqjBZGQ/image2.png"
+            alt="BCC Collegiate"
           ></img>
         </a>
       </Menu>
