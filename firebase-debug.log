@@ -1,0 +1,276 @@
+[debug] [2026-02-07T06:04:11.610Z] ----------------------------------------------------------------------
+[debug] [2026-02-07T06:04:11.612Z] Command:       /opt/homebrew/Cellar/node/23.7.0/bin/node /opt/homebrew/bin/firebase login
+[debug] [2026-02-07T06:04:11.612Z] CLI Version:   15.5.1
+[debug] [2026-02-07T06:04:11.612Z] Platform:      darwin
+[debug] [2026-02-07T06:04:11.612Z] Node Version:  v23.7.0
+[debug] [2026-02-07T06:04:11.613Z] Time:          Sat Feb 07 2026 17:04:11 GMT+1100 (Australian Eastern Daylight Time)
+[debug] [2026-02-07T06:04:11.613Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2026-02-07T06:04:11.614Z] >>> [apiv2][query] GET https://firebase-public.firebaseio.com/cli.json [none]
+[info] i  The Firebase CLI’s MCP server feature can optionally make use of Gemini in Firebase. Learn more about Gemini in Firebase and how it uses your data: https://firebase.google.com/docs/gemini-in-firebase#how-gemini-in-firebase-uses-your-data 
+[debug] [2026-02-07T06:04:12.384Z] <<< [apiv2][status] GET https://firebase-public.firebaseio.com/cli.json 200
+[debug] [2026-02-07T06:04:12.384Z] <<< [apiv2][body] GET https://firebase-public.firebaseio.com/cli.json {"cloudBuildErrorAfter":1594252800000,"cloudBuildWarnAfter":1590019200000,"defaultNode10After":1594252800000,"minVersion":"3.0.5","node8DeploysDisabledAfter":1613390400000,"node8RuntimeDisabledAfter":1615809600000,"node8WarnAfter":1600128000000}
+[info] 
+[info] i  Firebase optionally collects CLI and Emulator Suite usage and error reporting information to help improve our products. Data is collected in accordance with Google's privacy policy (https://policies.google.com/privacy) and is not used to identify you. 
+[info] 
+[info] i  To change your preferences at any time, run `firebase logout` and `firebase login` again. 
+[info] 
+[info] Visit this URL on this device to log in:
+[info] https://accounts.google.com/o/oauth2/auth?client_id=563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com&scope=email%20openid%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloudplatformprojects.readonly%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Ffirebase%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloud-platform&response_type=code&state=849306303&redirect_uri=http%3A%2F%2Flocalhost%3A9005
+[info] 
+[info] Waiting for authentication...
+[debug] [2026-02-07T06:11:35.617Z] ----------------------------------------------------------------------
+[debug] [2026-02-07T06:11:35.619Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\sausm\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2026-02-07T06:11:35.619Z] CLI Version:   15.5.1
+[debug] [2026-02-07T06:11:35.619Z] Platform:      win32
+[debug] [2026-02-07T06:11:35.619Z] Node Version:  v24.13.0
+[debug] [2026-02-07T06:11:35.619Z] Time:          Sat Feb 07 2026 15:11:35 GMT+0900 (Korean Standard Time)
+[debug] [2026-02-07T06:11:35.619Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2026-02-07T06:11:37.215Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-02-07T06:11:37.215Z] > authorizing via signed-in user (logjunelee@gmail.com)
+[debug] [2026-02-07T06:11:37.215Z] [iam] checking project bcc-stuco for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2026-02-07T06:11:37.216Z] Checked if tokens are valid: true, expires at: 1770448086701
+[debug] [2026-02-07T06:11:37.216Z] Checked if tokens are valid: true, expires at: 1770448086701
+[debug] [2026-02-07T06:11:37.217Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/bcc-stuco:testIamPermissions [none]
+[debug] [2026-02-07T06:11:37.217Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/bcc-stuco:testIamPermissions  x-goog-user-project=bcc-stuco
+[debug] [2026-02-07T06:11:37.217Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/bcc-stuco:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2026-02-07T06:11:37.527Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/bcc-stuco:testIamPermissions 200
+[debug] [2026-02-07T06:11:37.527Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/bcc-stuco:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2026-02-07T06:11:37.527Z] Checked if tokens are valid: true, expires at: 1770448086701
+[debug] [2026-02-07T06:11:37.527Z] Checked if tokens are valid: true, expires at: 1770448086701
+[debug] [2026-02-07T06:11:37.527Z] >>> [apiv2][query] POST https://iam.googleapis.com/v1/projects/bcc-stuco/serviceAccounts/bcc-stuco@appspot.gserviceaccount.com:testIamPermissions [none]
+[debug] [2026-02-07T06:11:37.527Z] >>> [apiv2][body] POST https://iam.googleapis.com/v1/projects/bcc-stuco/serviceAccounts/bcc-stuco@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2026-02-07T06:11:38.604Z] <<< [apiv2][status] POST https://iam.googleapis.com/v1/projects/bcc-stuco/serviceAccounts/bcc-stuco@appspot.gserviceaccount.com:testIamPermissions 200
+[debug] [2026-02-07T06:11:38.604Z] <<< [apiv2][body] POST https://iam.googleapis.com/v1/projects/bcc-stuco/serviceAccounts/bcc-stuco@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2026-02-07T06:11:38.604Z] Checked if tokens are valid: true, expires at: 1770448086701
+[debug] [2026-02-07T06:11:38.604Z] Checked if tokens are valid: true, expires at: 1770448086701
+[debug] [2026-02-07T06:11:38.605Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/bcc-stuco [none]
+[debug] [2026-02-07T06:11:38.992Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/bcc-stuco 200
+[debug] [2026-02-07T06:11:38.992Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/bcc-stuco {"projectId":"bcc-stuco","projectNumber":"549520775356","displayName":"BCC-Stuco","name":"projects/bcc-stuco","resources":{"hostingSite":"bcc-stuco"},"state":"ACTIVE","etag":"1_83e6b4ae-ac39-4044-ab5a-203c6a999ac1"}
+[info] 
+[info] === Deploying to 'bcc-stuco'...
+[info] 
+[info] i  deploying functions, hosting 
+[debug] [2026-02-07T06:11:38.997Z] Checked if tokens are valid: true, expires at: 1770448086701
+[debug] [2026-02-07T06:11:38.997Z] Checked if tokens are valid: true, expires at: 1770448086701
+[debug] [2026-02-07T06:11:38.997Z] >>> [apiv2][query] GET https://cloudresourcemanager.googleapis.com/v1/projects/bcc-stuco [none]
+[debug] [2026-02-07T06:11:39.191Z] <<< [apiv2][status] GET https://cloudresourcemanager.googleapis.com/v1/projects/bcc-stuco 200
+[debug] [2026-02-07T06:11:39.191Z] <<< [apiv2][body] GET https://cloudresourcemanager.googleapis.com/v1/projects/bcc-stuco {"projectNumber":"549520775356","projectId":"bcc-stuco","lifecycleState":"ACTIVE","name":"BCC-Stuco","labels":{"firebase":"enabled"},"createTime":"2022-09-24T03:35:01.122Z"}
+[info] i  functions: preparing codebase default for deployment 
+[info] i  functions: ensuring required API cloudfunctions.googleapis.com is enabled... 
+[info] i  functions: ensuring required API cloudbuild.googleapis.com is enabled... 
+[info] i  artifactregistry: ensuring required API artifactregistry.googleapis.com is enabled... 
+[debug] [2026-02-07T06:11:39.194Z] Checked if tokens are valid: true, expires at: 1770448086701
+[debug] [2026-02-07T06:11:39.194Z] Checked if tokens are valid: true, expires at: 1770448086701
+[debug] [2026-02-07T06:11:39.194Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/bcc-stuco/adminSdkConfig [none]
+[debug] [2026-02-07T06:11:39.501Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/bcc-stuco/adminSdkConfig 200
+[debug] [2026-02-07T06:11:39.501Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/bcc-stuco/adminSdkConfig {"projectId":"bcc-stuco","storageBucket":"bcc-stuco.firebasestorage.app"}
+[debug] [2026-02-07T06:11:39.501Z] Checked if tokens are valid: true, expires at: 1770448086701
+[debug] [2026-02-07T06:11:39.502Z] Checked if tokens are valid: true, expires at: 1770448086701
+[debug] [2026-02-07T06:11:39.502Z] >>> [apiv2][query] GET https://runtimeconfig.googleapis.com/v1beta1/projects/bcc-stuco/configs [none]
+[debug] [2026-02-07T06:11:39.946Z] <<< [apiv2][status] GET https://runtimeconfig.googleapis.com/v1beta1/projects/bcc-stuco/configs 200
+[debug] [2026-02-07T06:11:39.946Z] <<< [apiv2][body] GET https://runtimeconfig.googleapis.com/v1beta1/projects/bcc-stuco/configs {}
+[debug] [2026-02-07T06:11:39.949Z] Validating nodejs source
+[warn] !  functions: Runtime Node.js 20 will be deprecated on 2026-04-30 and will be decommissioned on 2026-10-30, after which you will not be able to deploy without upgrading. Consider upgrading now to avoid disruption. See https://cloud.google.com/functions/docs/runtime-support for full details on the lifecycle policy 
+[warn] !  functions: Couldn't find firebase-functions package in your source code. Have you run 'npm install'? 
+[debug] [2026-02-07T06:11:39.954Z] getFunctionsSDKVersion encountered error: Cannot find module 'firebase-functions'
+Require stack:
+- C:\Users\sausm\AppData\Roaming\npm\node_modules\firebase-tools\lib\deploy\functions\runtimes\node\versioning.js
+- C:\Users\sausm\AppData\Roaming\npm\node_modules\firebase-tools\lib\deploy\functions\runtimes\node\index.js
+- C:\Users\sausm\AppData\Roaming\npm\node_modules\firebase-tools\lib\deploy\functions\runtimes\index.js
+- C:\Users\sausm\AppData\Roaming\npm\node_modules\firebase-tools\lib\deploy\functions\prepare.js
+- C:\Users\sausm\AppData\Roaming\npm\node_modules\firebase-tools\lib\emulator\functionsEmulatorShared.js
+- C:\Users\sausm\AppData\Roaming\npm\node_modules\firebase-tools\lib\frameworks\index.js
+- C:\Users\sausm\AppData\Roaming\npm\node_modules\firebase-tools\lib\deploy\hosting\prepare.js
+- C:\Users\sausm\AppData\Roaming\npm\node_modules\firebase-tools\lib\deploy\hosting\index.js
+- C:\Users\sausm\AppData\Roaming\npm\node_modules\firebase-tools\lib\deploy\index.js
+- C:\Users\sausm\AppData\Roaming\npm\node_modules\firebase-tools\lib\commands\deploy.js
+- C:\Users\sausm\AppData\Roaming\npm\node_modules\firebase-tools\lib\commands\index.js
+- C:\Users\sausm\AppData\Roaming\npm\node_modules\firebase-tools\lib\index.js
+- C:\Users\sausm\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\cli.js
+- C:\Users\sausm\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js {"code":"MODULE_NOT_FOUND","requireStack":["C:\\Users\\sausm\\AppData\\Roaming\\npm\\node_modules\\firebase-tools\\lib\\deploy\\functions\\runtimes\\node\\versioning.js","C:\\Users\\sausm\\AppData\\Roaming\\npm\\node_modules\\firebase-tools\\lib\\deploy\\functions\\runtimes\\node\\index.js","C:\\Users\\sausm\\AppData\\Roaming\\npm\\node_modules\\firebase-tools\\lib\\deploy\\functions\\runtimes\\index.js","C:\\Users\\sausm\\AppData\\Roaming\\npm\\node_modules\\firebase-tools\\lib\\deploy\\functions\\prepare.js","C:\\Users\\sausm\\AppData\\Roaming\\npm\\node_modules\\firebase-tools\\lib\\emulator\\functionsEmulatorShared.js","C:\\Users\\sausm\\AppData\\Roaming\\npm\\node_modules\\firebase-tools\\lib\\frameworks\\index.js","C:\\Users\\sausm\\AppData\\Roaming\\npm\\node_modules\\firebase-tools\\lib\\deploy\\hosting\\prepare.js","C:\\Users\\sausm\\AppData\\Roaming\\npm\\node_modules\\firebase-tools\\lib\\deploy\\hosting\\index.js","C:\\Users\\sausm\\AppData\\Roaming\\npm\\node_modules\\firebase-tools\\lib\\deploy\\index.js","C:\\Users\\sausm\\AppData\\Roaming\\npm\\node_modules\\firebase-tools\\lib\\commands\\deploy.js","C:\\Users\\sausm\\AppData\\Roaming\\npm\\node_modules\\firebase-tools\\lib\\commands\\index.js","C:\\Users\\sausm\\AppData\\Roaming\\npm\\node_modules\\firebase-tools\\lib\\index.js","C:\\Users\\sausm\\AppData\\Roaming\\npm\\node_modules\\firebase-tools\\lib\\bin\\cli.js","C:\\Users\\sausm\\AppData\\Roaming\\npm\\node_modules\\firebase-tools\\lib\\bin\\firebase.js"]}
+[debug] [2026-02-07T06:11:39.955Z] checkFunctionsSDKVersion encountered error: Invalid Version:  {}
+[debug] [2026-02-07T06:11:39.956Z] > [functions] package.json contents: {
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "scripts": {
+    "serve": "firebase emulators:start --only functions",
+    "shell": "firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "20"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "firebase-admin": "^12.7.0",
+    "firebase-functions": "^6.1.1"
+  },
+  "devDependencies": {
+    "firebase-functions-test": "^0.2.0"
+  },
+  "private": true
+}
+[debug] [2026-02-07T06:11:39.956Z] Building nodejs source
+[info] i  functions: Loading and analyzing source code for codebase default to determine what to deploy 
+[debug] [2026-02-07T06:11:39.957Z] Could not parse firebase-functions version '' into semver.
+[debug] [2026-02-07T06:11:39.958Z] Could not find functions.yaml. Must use http discovery
+[debug] [2026-02-07T06:11:39.967Z] Error: Cannot find module 'firebase-functions'
+Require stack:
+- C:\Users\sausm\AppData\Roaming\npm\node_modules\firebase-tools\lib\deploy\functions\runtimes\node\index.js
+- C:\Users\sausm\AppData\Roaming\npm\node_modules\firebase-tools\lib\deploy\functions\runtimes\index.js
+- C:\Users\sausm\AppData\Roaming\npm\node_modules\firebase-tools\lib\deploy\functions\prepare.js
+- C:\Users\sausm\AppData\Roaming\npm\node_modules\firebase-tools\lib\emulator\functionsEmulatorShared.js
+- C:\Users\sausm\AppData\Roaming\npm\node_modules\firebase-tools\lib\frameworks\index.js
+- C:\Users\sausm\AppData\Roaming\npm\node_modules\firebase-tools\lib\deploy\hosting\prepare.js
+- C:\Users\sausm\AppData\Roaming\npm\node_modules\firebase-tools\lib\deploy\hosting\index.js
+- C:\Users\sausm\AppData\Roaming\npm\node_modules\firebase-tools\lib\deploy\index.js
+- C:\Users\sausm\AppData\Roaming\npm\node_modules\firebase-tools\lib\commands\deploy.js
+- C:\Users\sausm\AppData\Roaming\npm\node_modules\firebase-tools\lib\commands\index.js
+- C:\Users\sausm\AppData\Roaming\npm\node_modules\firebase-tools\lib\index.js
+- C:\Users\sausm\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\cli.js
+- C:\Users\sausm\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1421:15)
+    at require.resolve (node:internal/modules/helpers:163:19)
+    at Delegate.findFunctionsBinary (C:\Users\sausm\AppData\Roaming\npm\node_modules\firebase-tools\lib\deploy\functions\runtimes\node\index.js:101:33)
+    at Delegate.spawnFunctionsProcess (C:\Users\sausm\AppData\Roaming\npm\node_modules\firebase-tools\lib\deploy\functions\runtimes\node\index.js:131:30)
+    at Delegate.serveAdmin (C:\Users\sausm\AppData\Roaming\npm\node_modules\firebase-tools\lib\deploy\functions\runtimes\node\index.js:152:35)
+    at Delegate.discoverBuild (C:\Users\sausm\AppData\Roaming\npm\node_modules\firebase-tools\lib\deploy\functions\runtimes\node\index.js:192:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async loadCodebases (C:\Users\sausm\AppData\Roaming\npm\node_modules\firebase-tools\lib\deploy\functions\prepare.js:331:33)
+    at async prepare (C:\Users\sausm\AppData\Roaming\npm\node_modules\firebase-tools\lib\deploy\functions\prepare.js:69:24)
+    at async chain (C:\Users\sausm\AppData\Roaming\npm\node_modules\firebase-tools\lib\deploy\index.js:43:9)
+[error] 
+[error] Error: An unexpected error has occurred.
+[debug] [2026-02-07T06:13:49.446Z] ----------------------------------------------------------------------
+[debug] [2026-02-07T06:13:49.448Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\sausm\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy --only functions
+[debug] [2026-02-07T06:13:49.448Z] CLI Version:   15.5.1
+[debug] [2026-02-07T06:13:49.448Z] Platform:      win32
+[debug] [2026-02-07T06:13:49.449Z] Node Version:  v24.13.0
+[debug] [2026-02-07T06:13:49.449Z] Time:          Sat Feb 07 2026 15:13:49 GMT+0900 (Korean Standard Time)
+[debug] [2026-02-07T06:13:49.449Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2026-02-07T06:13:51.127Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-02-07T06:13:51.127Z] > authorizing via signed-in user (logjunelee@gmail.com)
+[debug] [2026-02-07T06:13:51.127Z] [iam] checking project bcc-stuco for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]
+[debug] [2026-02-07T06:13:51.128Z] Checked if tokens are valid: true, expires at: 1770448086701
+[debug] [2026-02-07T06:13:51.128Z] Checked if tokens are valid: true, expires at: 1770448086701
+[debug] [2026-02-07T06:13:51.128Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/bcc-stuco:testIamPermissions [none]
+[debug] [2026-02-07T06:13:51.128Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/bcc-stuco:testIamPermissions  x-goog-user-project=bcc-stuco
+[debug] [2026-02-07T06:13:51.129Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/bcc-stuco:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2026-02-07T06:13:51.379Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/bcc-stuco:testIamPermissions 200
+[debug] [2026-02-07T06:13:51.379Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/bcc-stuco:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2026-02-07T06:13:51.380Z] Checked if tokens are valid: true, expires at: 1770448086701
+[debug] [2026-02-07T06:13:51.380Z] Checked if tokens are valid: true, expires at: 1770448086701
+[debug] [2026-02-07T06:13:51.380Z] >>> [apiv2][query] POST https://iam.googleapis.com/v1/projects/bcc-stuco/serviceAccounts/bcc-stuco@appspot.gserviceaccount.com:testIamPermissions [none]
+[debug] [2026-02-07T06:13:51.380Z] >>> [apiv2][body] POST https://iam.googleapis.com/v1/projects/bcc-stuco/serviceAccounts/bcc-stuco@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2026-02-07T06:13:52.457Z] <<< [apiv2][status] POST https://iam.googleapis.com/v1/projects/bcc-stuco/serviceAccounts/bcc-stuco@appspot.gserviceaccount.com:testIamPermissions 200
+[debug] [2026-02-07T06:13:52.457Z] <<< [apiv2][body] POST https://iam.googleapis.com/v1/projects/bcc-stuco/serviceAccounts/bcc-stuco@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[info] 
+[info] === Deploying to 'bcc-stuco'...
+[info] 
+[info] i  deploying functions 
+[debug] [2026-02-07T06:13:52.459Z] Checked if tokens are valid: true, expires at: 1770448086701
+[debug] [2026-02-07T06:13:52.459Z] Checked if tokens are valid: true, expires at: 1770448086701
+[debug] [2026-02-07T06:13:52.459Z] >>> [apiv2][query] GET https://cloudresourcemanager.googleapis.com/v1/projects/bcc-stuco [none]
+[debug] [2026-02-07T06:13:52.696Z] <<< [apiv2][status] GET https://cloudresourcemanager.googleapis.com/v1/projects/bcc-stuco 200
+[debug] [2026-02-07T06:13:52.696Z] <<< [apiv2][body] GET https://cloudresourcemanager.googleapis.com/v1/projects/bcc-stuco {"projectNumber":"549520775356","projectId":"bcc-stuco","lifecycleState":"ACTIVE","name":"BCC-Stuco","labels":{"firebase":"enabled"},"createTime":"2022-09-24T03:35:01.122Z"}
+[info] i  functions: preparing codebase default for deployment 
+[info] i  functions: ensuring required API cloudfunctions.googleapis.com is enabled... 
+[info] i  functions: ensuring required API cloudbuild.googleapis.com is enabled... 
+[info] i  artifactregistry: ensuring required API artifactregistry.googleapis.com is enabled... 
+[debug] [2026-02-07T06:13:52.700Z] Checked if tokens are valid: true, expires at: 1770448086701
+[debug] [2026-02-07T06:13:52.700Z] Checked if tokens are valid: true, expires at: 1770448086701
+[debug] [2026-02-07T06:13:52.700Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/bcc-stuco/adminSdkConfig [none]
+[debug] [2026-02-07T06:13:53.128Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/bcc-stuco/adminSdkConfig 200
+[debug] [2026-02-07T06:13:53.128Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/bcc-stuco/adminSdkConfig {"projectId":"bcc-stuco","storageBucket":"bcc-stuco.firebasestorage.app"}
+[debug] [2026-02-07T06:13:53.128Z] Checked if tokens are valid: true, expires at: 1770448086701
+[debug] [2026-02-07T06:13:53.129Z] Checked if tokens are valid: true, expires at: 1770448086701
+[debug] [2026-02-07T06:13:53.129Z] >>> [apiv2][query] GET https://runtimeconfig.googleapis.com/v1beta1/projects/bcc-stuco/configs [none]
+[debug] [2026-02-07T06:13:53.690Z] <<< [apiv2][status] GET https://runtimeconfig.googleapis.com/v1beta1/projects/bcc-stuco/configs 200
+[debug] [2026-02-07T06:13:53.690Z] <<< [apiv2][body] GET https://runtimeconfig.googleapis.com/v1beta1/projects/bcc-stuco/configs {}
+[debug] [2026-02-07T06:13:53.693Z] Validating nodejs source
+[warn] !  functions: Runtime Node.js 20 will be deprecated on 2026-04-30 and will be decommissioned on 2026-10-30, after which you will not be able to deploy without upgrading. Consider upgrading now to avoid disruption. See https://cloud.google.com/functions/docs/runtime-support for full details on the lifecycle policy 
+[warn] !  functions: package.json indicates an outdated version of firebase-functions. Please upgrade using npm install --save firebase-functions@latest in your functions directory. 
+[warn] !  functions: Please note that there will be breaking changes when you upgrade. 
+[debug] [2026-02-07T06:13:54.529Z] > [functions] package.json contents: {
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "scripts": {
+    "serve": "firebase emulators:start --only functions",
+    "shell": "firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "20"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "firebase-admin": "^12.7.0",
+    "firebase-functions": "^6.1.1"
+  },
+  "devDependencies": {
+    "firebase-functions-test": "^0.2.0"
+  },
+  "private": true
+}
+[debug] [2026-02-07T06:13:54.530Z] Building nodejs source
+[info] i  functions: Loading and analyzing source code for codebase default to determine what to deploy 
+[debug] [2026-02-07T06:13:54.530Z] Could not find functions.yaml. Must use http discovery
+[debug] [2026-02-07T06:13:54.539Z] Found firebase-functions binary at 'C:\Users\sausm\bccstuco\functions\node_modules\.bin\firebase-functions'
+[info] Serving at port 8545
+
+[debug] [2026-02-07T06:13:55.345Z] Got response from /__/functions.yaml {"endpoints":{},"specVersion":"v1alpha1","requiredAPIs":[],"extensions":{}}
+[info] i  extensions: ensuring required API firebaseextensions.googleapis.com is enabled... 
+[debug] [2026-02-07T06:13:59.377Z] Checked if tokens are valid: true, expires at: 1770448086701
+[debug] [2026-02-07T06:13:59.377Z] Checked if tokens are valid: true, expires at: 1770448086701
+[debug] [2026-02-07T06:13:59.377Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/bcc-stuco/services/firebaseextensions.googleapis.com [none]
+[debug] [2026-02-07T06:13:59.377Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/bcc-stuco/services/firebaseextensions.googleapis.com  x-goog-user-project=bcc-stuco
+[debug] [2026-02-07T06:14:00.496Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/bcc-stuco/services/firebaseextensions.googleapis.com 200
+[debug] [2026-02-07T06:14:00.496Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/bcc-stuco/services/firebaseextensions.googleapis.com [omitted]
+[info] +  extensions: required API firebaseextensions.googleapis.com is enabled 
+[debug] [2026-02-07T06:14:00.504Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-02-07T06:14:00.504Z] > authorizing via signed-in user (logjunelee@gmail.com)
+[debug] [2026-02-07T06:14:00.504Z] [iam] checking project bcc-stuco for permissions ["firebase.projects.get","firebaseextensions.instances.list"]
+[debug] [2026-02-07T06:14:00.505Z] Checked if tokens are valid: true, expires at: 1770448086701
+[debug] [2026-02-07T06:14:00.505Z] Checked if tokens are valid: true, expires at: 1770448086701
+[debug] [2026-02-07T06:14:00.505Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/bcc-stuco:testIamPermissions [none]
+[debug] [2026-02-07T06:14:00.505Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/bcc-stuco:testIamPermissions  x-goog-user-project=bcc-stuco
+[debug] [2026-02-07T06:14:00.505Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/bcc-stuco:testIamPermissions {"permissions":["firebase.projects.get","firebaseextensions.instances.list"]}
+[debug] [2026-02-07T06:14:00.729Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/bcc-stuco:testIamPermissions 200
+[debug] [2026-02-07T06:14:00.729Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/bcc-stuco:testIamPermissions {"permissions":["firebase.projects.get","firebaseextensions.instances.list"]}
+[debug] [2026-02-07T06:14:00.730Z] Checked if tokens are valid: true, expires at: 1770448086701
+[debug] [2026-02-07T06:14:00.730Z] Checked if tokens are valid: true, expires at: 1770448086701
+[debug] [2026-02-07T06:14:00.730Z] >>> [apiv2][query] GET https://firebaseextensions.googleapis.com/v1beta/projects/bcc-stuco/instances pageSize=100&pageToken=
+[debug] [2026-02-07T06:14:01.726Z] <<< [apiv2][status] GET https://firebaseextensions.googleapis.com/v1beta/projects/bcc-stuco/instances 200
+[debug] [2026-02-07T06:14:01.726Z] <<< [apiv2][body] GET https://firebaseextensions.googleapis.com/v1beta/projects/bcc-stuco/instances {}
+[debug] [2026-02-07T06:14:01.729Z] Checked if tokens are valid: true, expires at: 1770448086701
+[debug] [2026-02-07T06:14:01.729Z] Checked if tokens are valid: true, expires at: 1770448086701
+[debug] [2026-02-07T06:14:01.729Z] >>> [apiv2][query] GET https://cloudfunctions.googleapis.com/v1/projects/bcc-stuco/locations/-/functions [none]
+[debug] [2026-02-07T06:14:02.565Z] <<< [apiv2][status] GET https://cloudfunctions.googleapis.com/v1/projects/bcc-stuco/locations/-/functions 200
+[debug] [2026-02-07T06:14:02.565Z] <<< [apiv2][body] GET https://cloudfunctions.googleapis.com/v1/projects/bcc-stuco/locations/-/functions {}
+[debug] [2026-02-07T06:14:02.566Z] Checked if tokens are valid: true, expires at: 1770448086701
+[debug] [2026-02-07T06:14:02.566Z] Checked if tokens are valid: true, expires at: 1770448086701
+[debug] [2026-02-07T06:14:02.566Z] >>> [apiv2][query] GET https://cloudfunctions.googleapis.com/v2/projects/bcc-stuco/locations/-/functions filter=environment%3D%22GEN_2%22
+[debug] [2026-02-07T06:14:03.847Z] <<< [apiv2][status] GET https://cloudfunctions.googleapis.com/v2/projects/bcc-stuco/locations/-/functions 200
+[debug] [2026-02-07T06:14:03.847Z] <<< [apiv2][body] GET https://cloudfunctions.googleapis.com/v2/projects/bcc-stuco/locations/-/functions {}
+[debug] [2026-02-07T06:14:03.853Z] Checked if tokens are valid: true, expires at: 1770448086701
+[debug] [2026-02-07T06:14:03.854Z] Checked if tokens are valid: true, expires at: 1770448086701
+[debug] [2026-02-07T06:14:03.854Z] >>> [apiv2][query] GET https://cloudbilling.googleapis.com/v1/projects/bcc-stuco/billingInfo [none]
+[debug] [2026-02-07T06:14:05.083Z] <<< [apiv2][status] GET https://cloudbilling.googleapis.com/v1/projects/bcc-stuco/billingInfo 200
+[debug] [2026-02-07T06:14:05.083Z] <<< [apiv2][body] GET https://cloudbilling.googleapis.com/v1/projects/bcc-stuco/billingInfo {"name":"projects/bcc-stuco/billingInfo","projectId":"bcc-stuco","billingAccountName":"billingAccounts/01C1D5-3ECB64-1065E2","billingEnabled":false}
+[debug] [2026-02-07T06:14:05.084Z] Checked if tokens are valid: true, expires at: 1770448086701
+[debug] [2026-02-07T06:14:05.084Z] Checked if tokens are valid: true, expires at: 1770448086701
+[debug] [2026-02-07T06:14:05.084Z] >>> [apiv2][query] GET https://cloudbilling.googleapis.com/v1/billingAccounts [none]
+[debug] [2026-02-07T06:14:05.416Z] <<< [apiv2][status] GET https://cloudbilling.googleapis.com/v1/billingAccounts 200
+[debug] [2026-02-07T06:14:05.416Z] <<< [apiv2][body] GET https://cloudbilling.googleapis.com/v1/billingAccounts {"billingAccounts":[{"name":"billingAccounts/01C1D5-3ECB64-1065E2","open":false,"displayName":"Firebase Payment","masterBillingAccount":"","parent":"","currencyCode":"KRW"}],"nextPageToken":""}
+[info] 
+[info] Extension require your project to be upgraded to the Blaze plan. Please visit the following link to add a billing account:
+[info] 
+[info] https://console.cloud.google.com/billing/linkedaccount?project=bcc-stuco
+[info] 

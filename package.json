@@ -10,6 +10,11 @@
     "@testing-library/user-event": "^13.5.0",
     "bootstrap": "^5.2.2",
     "date-fns": "^2.29.3",
+<<<<<<< HEAD
+=======
+    "firebase": "^9.23.0",
+    "firebase-tools": "^15.5.1",
+>>>>>>> master2
     "jquery": "^3.6.1",
     "moment": "^2.29.4",
     "popper.js": "^1.16.1",

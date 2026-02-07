@@ -42,8 +42,8 @@ const Footer = () => {
             <Container>
                 <Row className="justify-content-center">
                     <Col md={6} className="text-center">
-                        <FooterTitle>BCC STUCO</FooterTitle>
-                        <FooterSubtitle>STUCO 2025~2026</FooterSubtitle>
+                        <FooterTitle>BC Collegiate Student Council</FooterTitle>
+                        <FooterSubtitle>Made with ❤️ by <a href="mailto:2027junelee@usbccollegiate.org" style={{ color: "#a8dadc", textDecoration: "none" }}>Junsoo Lee</a> since 2022</FooterSubtitle>
 
                         <SocialContainer>
                             <div style={{ display: "flex", alignItems: "center" }}>

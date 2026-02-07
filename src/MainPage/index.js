@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Container, Row, Col, Button, Card } from "react-bootstrap";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
+import HeartEffect from "../components/HeartEffect";
 import "../styles/index.css"; // Ensure global styles are loaded
 
 // Styled Components for Custom UI
@@ -82,8 +83,29 @@ const InfoCard = styled(Card)`
 `;
 
 function MainPage() {
+  const [showHearts, setShowHearts] = React.useState(true);
+  const [isFading, setIsFading] = React.useState(false);
+
+  React.useEffect(() => {
+    // Stage 1: Start fading after 5 seconds
+    const fadeTimer = setTimeout(() => {
+      setIsFading(true);
+    }, 5000);
+
+    // Stage 2: Stop rendering after fade finishes (2 seconds later)
+    const removeTimer = setTimeout(() => {
+      setShowHearts(false);
+    }, 7000);
+
+    return () => {
+      clearTimeout(fadeTimer);
+      clearTimeout(removeTimer);
+    };
+  }, []);
+
   return (
     <>
+      {showHearts && <HeartEffect isFading={isFading} />}
       <NavBar />
 
       <HeroSection>

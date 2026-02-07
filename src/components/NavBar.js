@@ -49,7 +49,7 @@ function NavBar() {
           <Nav className="ms-auto">
             <StyledNavLink href="/">Home</StyledNavLink>
             <StyledNavLink href="/events">Events</StyledNavLink>
-            <StyledNavLink href="/forum">Forum/Q&A</StyledNavLink>
+            <StyledNavLink href="/forum">Q&A</StyledNavLink>
             <StyledNavLink href="/about">About</StyledNavLink>
           </Nav>
         </Navbar.Collapse>

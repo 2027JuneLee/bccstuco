@@ -26,23 +26,23 @@ const EventDate = styled.div`
 `;
 
 const EventCard = ({ event }) => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-    return (
-        <StyledCard>
-            {event.image_url && <CardImage variant="top" src={event.image_url} />}
-            <Card.Body>
-                <EventDate>{new Date(event.date).toLocaleDateString()}</EventDate>
-                <Card.Title style={{ fontFamily: "Cinzel, serif" }}>{event.title}</Card.Title>
-                <Card.Text>
-                    {event.body.substring(0, 100)}...
-                </Card.Text>
-                <Button variant="outline-primary" onClick={() => navigate(`/events/${event.id}`)}>
-                    Read More
-                </Button>
-            </Card.Body>
-        </StyledCard >
-    );
+  return (
+    <StyledCard>
+      {event.image_url && <CardImage variant="top" src={event.image_url} />}
+      <Card.Body>
+        <EventDate>{new Date(event.date).toLocaleDateString()}</EventDate>
+        <Card.Title style={{ fontFamily: "Cinzel, serif" }}>{event.title}</Card.Title>
+        <Card.Text>
+          {event.body.substring(0, 100)}...
+        </Card.Text>
+        <Button variant="outline-primary" onClick={() => navigate(`/events/${event.id}`)}>
+          Read More
+        </Button>
+      </Card.Body>
+    </StyledCard >
+  );
 };
 
 export default EventCard;
