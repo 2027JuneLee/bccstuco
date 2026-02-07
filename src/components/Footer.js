@@ -9,36 +9,33 @@ const FooterWrapper = styled.footer`
   color: white;
   padding: 40px 0;
   font-family: "Gill Sans", sans-serif;
-  margin-top: 50px;
+  margin-top: 0; // Removed margin to eliminate white gap
 `;
 
 const FooterTitle = styled.h4`
   font-family: "Cinzel", serif;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   color: #fff;
+  text-align: center;
 `;
 
-const FooterLink = styled.a`
-  color: #ddd;
-  display: block;
-  margin-bottom: 8px;
-  text-decoration: none;
-  font-size: 0.9rem;
-  &:hover {
-    color: white;
-    text-decoration: underline;
-  }
+const FooterSubtitle = styled.p`
+    text-align: center;
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    opacity: 0.8;
 `;
 
-const ContactInfo = styled.div`
-  font-size: 0.9rem;
-  line-height: 1.6;
-  color: #ddd;
+const SocialContainer = styled.div`
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 20px;
 `;
 
 const CopyRight = styled.div`
   border-top: 1px solid rgba(255, 255, 255, 0.1);
-  margin-top: 30px;
+  margin-top: 20px;
   padding-top: 20px;
   text-align: center;
   font-size: 0.8rem;
@@ -52,40 +49,23 @@ const Footer = () => {
     return (
         <FooterWrapper>
             <Container>
-                <Row>
-                    <Col md={4} className="mb-4">
+                <Row className="justify-content-center">
+                    <Col md={6} className="text-center">
                         <FooterTitle>BCC STUCO</FooterTitle>
-                        <ContactInfo>
-                            <div style={{ display: "flex", alignItems: "center", marginBottom: "10px" }}>
-                                <img src={emailIcon} alt="Email" style={{ width: "24px", height: "24px", marginRight: "10px", filter: "brightness(0) invert(1)" }} />
-                                <a href="mailto:stuco@usbccollegiate.org" style={{ color: "inherit", textDecoration: "none" }}>stuco@usbccollegiate.org</a>
+                        <FooterSubtitle>STUCO 2025~2026</FooterSubtitle>
+
+                        <SocialContainer>
+                            <div style={{ display: "flex", alignItems: "center" }}>
+                                <img src={emailIcon} alt="Email" style={{ width: "24px", height: "24px", marginRight: "8px", filter: "brightness(0) invert(1)" }} />
+                                <a href="mailto:stuco@usbccollegiate.org" style={{ color: "white", textDecoration: "none" }}>Email</a>
                             </div>
-                            <div style={{ display: "flex", alignItems: "center", marginBottom: "10px" }}>
-                                <img src={instagramIcon} alt="Instagram" style={{ width: "24px", height: "24px", marginRight: "10px", filter: "brightness(0) invert(1)" }} />
-                                <a href="https://www.instagram.com/bcc_stuco/" target="_blank" rel="noreferrer" style={{ color: "inherit", textDecoration: "none" }}>@bcc_stuco</a>
+                            <div style={{ display: "flex", alignItems: "center" }}>
+                                <img src={instagramIcon} alt="Instagram" style={{ width: "24px", height: "24px", marginRight: "8px", filter: "brightness(0) invert(1)" }} />
+                                <a href="https://www.instagram.com/bcc_stuco/" target="_blank" rel="noreferrer" style={{ color: "white", textDecoration: "none" }}>Instagram</a>
                             </div>
-                        </ContactInfo>
-                    </Col>
-                    <Col md={2} className="mb-4">
-                        <h5 style={{ fontFamily: 'Cinzel', marginBottom: '15px' }}>Sitemap</h5>
-                        <FooterLink href="/">Home</FooterLink>
-                        <FooterLink href="/about">About Us</FooterLink>
-                        <FooterLink href="/academics">Academics</FooterLink>
-                    </Col>
-                    <Col md={2} className="mb-4">
-                        <h5 style={{ fontFamily: 'Cinzel', marginBottom: '15px' }}>Connect</h5>
-                        <FooterLink href="/news">News</FooterLink>
-                        <FooterLink href="/events">Events</FooterLink>
-                        <FooterLink href="/contact">Contact</FooterLink>
-                    </Col>
-                    <Col md={4} className="mb-4">
-                        <h5 style={{ fontFamily: 'Cinzel', marginBottom: '15px' }}>Useful Links</h5>
-                        <FooterLink href="https://www.usbccollegiate.org" target="_blank">USB Collegiate Official</FooterLink>
+                        </SocialContainer>
                     </Col>
                 </Row>
-                <CopyRight>
-                    &copy; Copyright {new Date().getFullYear()} by BC Collegiate. All Rights Reserved.
-                </CopyRight>
             </Container>
         </FooterWrapper>
     );

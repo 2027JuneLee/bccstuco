@@ -8,7 +8,7 @@ import "../styles/index.css"; // Ensure global styles are loaded
 // Styled Components for Custom UI
 const HeroSection = styled.div`
   background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
-    url("https://observer.case.edu/wp-content/uploads/2025/10/EmptyCongress.jpg");
+    url("/hero_bg.jpg");
   background-size: cover;
   background-position: center;
   height: 85vh;
@@ -99,7 +99,7 @@ function MainPage() {
           <SectionTitle>About BCC</SectionTitle>
           <Row>
             <Col md={6}>
-              <img src="https://static.wixstatic.com/media/7d4bbb_9d5d5564883d47d1a25db4057e93758b~mv2.jpg/v1/fill/w_600,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/Image-empty-state.jpg" alt="About BCC" className="img-fluid mb-4" />
+              <img src="/about_bcc_stock.jpg" alt="About BCC" className="img-fluid mb-4" />
             </Col>
             <Col md={6}>
               <h3 style={{ fontFamily: "Cinzel", color: "#1d3557" }}>Our Mission</h3>
@@ -120,11 +120,11 @@ function MainPage() {
             <Col md={4} className="mb-4">
               <InfoCard>
                 <Card.Body className="text-center p-4">
-                  <Card.Title>Academics</Card.Title>
+                  <Card.Title>About</Card.Title>
                   <Card.Text>
-                    Discover our rigorous academic programs, AP courses, and college counseling services designed to prepare students for top-tier universities.
+                    Learn about our mission, our dedicated student council members, and the values that drive our community forward.
                   </Card.Text>
-                  <Button variant="outline-primary" href="/academics">View Academics</Button>
+                  <Button variant="outline-primary" href="/about">Learn More</Button>
                 </Card.Body>
               </InfoCard>
             </Col>
@@ -142,11 +142,11 @@ function MainPage() {
             <Col md={4} className="mb-4">
               <InfoCard>
                 <Card.Body className="text-center p-4">
-                  <Card.Title>Admissions</Card.Title>
+                  <Card.Title>Q&A Forum</Card.Title>
                   <Card.Text>
-                    Join our vibrant community! Learn about our admission process, requirements, and how to become a part of the BCC family.
+                    Have a question? Visit our student forum to ask questions, share ideas, and get answers from the Student Council.
                   </Card.Text>
-                  <Button variant="outline-primary" href="/admissions">Apply Now</Button>
+                  <Button variant="outline-primary" href="/forum">Visit Forum</Button>
                 </Card.Body>
               </InfoCard>
             </Col>

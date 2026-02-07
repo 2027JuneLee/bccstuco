@@ -24,20 +24,52 @@ const Title = styled.h1`
 const AdminControls = styled.div`
   text-align: right;
   margin-bottom: 20px;
+  margin-top: auto;
 `;
+
+// Cookie Helper Functions
+const setCookie = (name, value, days) => {
+  let expires = "";
+  if (days) {
+    const date = new Date();
+    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+    expires = "; expires=" + date.toUTCString();
+  }
+  document.cookie = name + "=" + (value || "") + expires + "; path=/";
+};
+
+const getCookie = (name) => {
+  const nameEQ = name + "=";
+  const ca = document.cookie.split(';');
+  for (let i = 0; i < ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+    if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+  }
+  return null;
+};
+
+const eraseCookie = (name) => {
+  document.cookie = name + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+};
 
 const Events = () => {
   const [events, setEvents] = useState([]);
   const [isAdmin, setIsAdmin] = useState(false);
-  const [showLogin, setShowLogin] = useState(false);
-  const [password, setPassword] = useState("");
   const [showAddModal, setShowAddModal] = useState(false);
 
   // New Event Form State
   const [newEvent, setNewEvent] = useState({ title: "", date: "", body: "", image_url: "" });
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [uploading, setUploading] = useState(false);
 
   useEffect(() => {
     fetchEvents();
+    // Check for admin cookie
+    const adminCookie = getCookie("adminAuthenticated");
+    if (adminCookie === "true") {
+      setIsAdmin(true);
+    }
   }, []);
 
   const fetchEvents = async () => {
@@ -50,27 +82,58 @@ const Events = () => {
     else setEvents(data);
   };
 
-  const handleLogin = () => {
-    if (password === "bccstuco2025") {
-      setIsAdmin(true);
-      setShowLogin(false);
-    } else {
-      alert("Incorrect password");
+  /* Removed handleLogin, password, and showLogin state as login is now handled in /admin */
+
+  const handleLogout = () => {
+    setIsAdmin(false);
+    eraseCookie("adminAuthenticated");
+  };
+
+  const handleFileChange = (e) => {
+    if (e.target.files && e.target.files.length > 0) {
+      setSelectedFile(e.target.files[0]);
     }
   };
 
   const handleAddEvent = async () => {
+    setUploading(true);
+    let imageUrl = newEvent.image_url;
+
+    if (selectedFile) {
+      const fileExt = selectedFile.name.split('.').pop();
+      const fileName = `${Date.now()}.${fileExt}`;
+      const filePath = `events/${fileName}`;
+
+      const { error: uploadError } = await supabase.storage
+        .from('event-images')
+        .upload(filePath, selectedFile);
+
+      if (uploadError) {
+        alert("Error uploading image: " + uploadError.message);
+        setUploading(false);
+        return;
+      }
+
+      const { data: { publicUrl } } = supabase.storage
+        .from('event-images')
+        .getPublicUrl(filePath);
+
+      imageUrl = publicUrl;
+    }
+
     const { error } = await supabase
       .from('events')
-      .insert([newEvent]);
+      .insert([{ ...newEvent, image_url: imageUrl }]);
 
     if (error) {
       alert("Error adding event: " + error.message);
     } else {
       setShowAddModal(false);
       setNewEvent({ title: "", date: "", body: "", image_url: "" });
+      setSelectedFile(null);
       fetchEvents();
     }
+    setUploading(false);
   };
 
   const handleDelete = async (id) => {
@@ -89,19 +152,8 @@ const Events = () => {
     <>
       <NavBar />
       <PageWrapper>
-        <Container>
+        <Container style={{ flex: 1, display: "flex", flexDirection: "column" }}>
           <Title>Upcoming Events</Title>
-
-          <AdminControls>
-            {!isAdmin ? (
-              <Button variant="link" onClick={() => setShowLogin(true)} style={{ fontSize: '0.8rem', color: '#ccc' }}>Admin Login</Button>
-            ) : (
-              <>
-                <span className="me-3 text-success">Admin Mode Active</span>
-                <Button variant="primary" onClick={() => setShowAddModal(true)}>+ Add Event</Button>
-              </>
-            )}
-          </AdminControls>
 
           <Row>
             {events.length === 0 ? (
@@ -119,20 +171,19 @@ const Events = () => {
               ))
             )}
           </Row>
+
+          <AdminControls>
+            {isAdmin && (
+              <>
+                <span className="me-3 text-success">Admin Mode Active</span>
+                <Button variant="primary" onClick={() => setShowAddModal(true)} className="me-2">+ Add Event</Button>
+                <Button variant="outline-danger" size="sm" onClick={handleLogout}>Logout</Button>
+              </>
+            )}
+          </AdminControls>
         </Container>
       </PageWrapper>
       <Footer />
-
-      {/* Admin Login Modal */}
-      <Modal show={showLogin} onHide={() => setShowLogin(false)}>
-        <Modal.Header closeButton><Modal.Title>Admin Login</Modal.Title></Modal.Header>
-        <Modal.Body>
-          <Form.Control type="password" placeholder="Enter Password" value={password} onChange={(e) => setPassword(e.target.value)} />
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="primary" onClick={handleLogin}>Login</Button>
-        </Modal.Footer>
-      </Modal>
 
       {/* Add Event Modal */}
       <Modal show={showAddModal} onHide={() => setShowAddModal(false)}>
@@ -147,8 +198,8 @@ const Events = () => {
             <Form.Control type="date" value={newEvent.date} onChange={(e) => setNewEvent({ ...newEvent, date: e.target.value })} />
           </Form.Group>
           <Form.Group className="mb-3">
-            <Form.Label>Image URL (Optional)</Form.Label>
-            <Form.Control type="text" value={newEvent.image_url} onChange={(e) => setNewEvent({ ...newEvent, image_url: e.target.value })} />
+            <Form.Label>Upload Image</Form.Label>
+            <Form.Control type="file" onChange={handleFileChange} />
           </Form.Group>
           <Form.Group className="mb-3">
             <Form.Label>Description</Form.Label>
@@ -156,8 +207,10 @@ const Events = () => {
           </Form.Group>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={() => setShowAddModal(false)}>Cancel</Button>
-          <Button variant="primary" onClick={handleAddEvent}>Save Event</Button>
+          <Button variant="secondary" onClick={() => setShowAddModal(false)} disabled={uploading}>Cancel</Button>
+          <Button variant="primary" onClick={handleAddEvent} disabled={uploading}>
+            {uploading ? "Uploading..." : "Save Event"}
+          </Button>
         </Modal.Footer>
       </Modal>
     </>
