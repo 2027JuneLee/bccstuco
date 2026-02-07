@@ -146,6 +146,8 @@ const InfoCard = styled(Card)`
   }
 `;
 
+
+
 function MainPage() {
   const [showHearts, setShowHearts] = React.useState(true);
   const [isFading, setIsFading] = React.useState(false);
@@ -184,6 +186,8 @@ function MainPage() {
           </ButtonContainer>
         </Container>
       </HeroSection>
+
+
 
       <Section>
         <Container>

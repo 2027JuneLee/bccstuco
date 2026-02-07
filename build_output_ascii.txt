@@ -1,0 +1,71 @@
+
+> bccstuco@0.1.0 build
+> react-scripts build
+
+node.exe : 
+(node:19696) 
+[DEP0176] 
+DeprecationWarning: 
+fs.F_OK is 
+deprecated, use 
+fs.constants.F_OK 
+instead
+At line:1 char:1
++ & "C:\Program File
+s\nodejs/node.exe" 
+"C:\Program Files\no
+dejs/node_mo ...
++ ~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~
+    + CategoryInfo  
+            : NotS  
+  pecified: ((nod   
+ e:19696) [D...t    
+s.F_OK instead:    
+String) [], Rem    
+oteException
+    + FullyQualifie 
+   dErrorId : Nati  
+  veCommandError
+ 
+(Use `node 
+--trace-deprecation 
+...` to show where 
+the warning was 
+created)
+Creating an optimized production build...
+Browserslist: 
+caniuse-lite is 
+outdated. Please 
+run:
+  npx update-browser
+slist-db@latest
+  Why you should do 
+it regularly: https:
+//github.com/browser
+slist/update-db#read
+me
+Browserslist: 
+caniuse-lite is 
+outdated. Please 
+run:
+  npx update-browser
+slist-db@latest
+  Why you should do 
+it regularly: https:
+//github.com/browser
+slist/update-db#read
+me
+
+Treating warnings as errors because process.env.CI = true.
+Most CI servers set it automatically.
+
+Failed to compile.
+
+[eslint] 
+src\SecretPage\index.js
+  Line 3:10:  'Container' is defined but never used  no-unused-vars
+
+

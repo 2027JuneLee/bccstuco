@@ -8,6 +8,8 @@ import QnA from "./QnA";
 import Admin from "./Admin";
 import SecretPage from "./SecretPage";
 import Archives from "./Archives";
+import Clubs from "./Clubs";
+import SecretGarden from "./SecretGarden";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -24,6 +26,8 @@ function App() {
           <Route path="/admin" element={<Admin />} />
           <Route path="/secret_valentines" element={<SecretPage />} />
           <Route path="/archives" element={<Archives />} />
+          <Route path="/clubs" element={<Clubs />} />
+          <Route path="/secret_garden" element={<SecretGarden />} />
         </Routes>
       </div>
     </Router>
