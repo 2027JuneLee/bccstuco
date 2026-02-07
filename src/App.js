@@ -1,6 +1,5 @@
 import "./App.css";
 import MainPage from "./MainPage";
-import FleaMarket from "./FleaMarket";
 import WeeklyReports from "./WeeklyReports";
 import Events from "./Events";
 import EventDetails from "./EventDetails";

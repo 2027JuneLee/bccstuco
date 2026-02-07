@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import styled from "styled-components";
 import { Container, Row, Col, Button, Modal, Form } from "react-bootstrap";
 import NavBar from "../components/NavBar";
@@ -28,15 +28,6 @@ const AdminControls = styled.div`
 `;
 
 // Cookie Helper Functions
-const setCookie = (name, value, days) => {
-  let expires = "";
-  if (days) {
-    const date = new Date();
-    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-    expires = "; expires=" + date.toUTCString();
-  }
-  document.cookie = name + "=" + (value || "") + expires + "; path=/";
-};
 
 const getCookie = (name) => {
   const nameEQ = name + "=";
@@ -71,9 +62,9 @@ const Events = () => {
     if (adminCookie === "true") {
       setIsAdmin(true);
     }
-  }, [filter]);
+  }, [fetchEvents]);
 
-  const fetchEvents = async () => {
+  const fetchEvents = useCallback(async () => {
     const today = new Date().toISOString().split('T')[0];
     const isUpcomingFilter = filter === "upcoming";
 
@@ -98,7 +89,7 @@ const Events = () => {
     } else {
       setEvents(data);
     }
-  };
+  }, [filter]);
 
   /* Removed handleLogin, password, and showLogin state as login is now handled in /admin */
 
