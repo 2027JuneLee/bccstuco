@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Container, Row, Col, Button, Card } from "react-bootstrap";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
-import PongHeartEffect from "../components/PongHeartEffect";
+import HeartEffect from "../components/HeartEffect";
 import "../styles/index.css"; // Ensure global styles are loaded
 
 // Styled Components for Custom UI
@@ -105,7 +105,7 @@ function MainPage() {
 
   return (
     <>
-      {showHearts && <PongHeartEffect isFading={isFading} />}
+      {showHearts && <HeartEffect isFading={isFading} />}
       <NavBar />
 
       <HeroSection>

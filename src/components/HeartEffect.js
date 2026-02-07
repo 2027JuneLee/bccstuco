@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from "react";
 import styled, { keyframes } from "styled-components";
 
-const moveX = keyframes`
-  from { left: 0; }
-  to { left: calc(100% - 40px); }
+const fall = keyframes`
+  0% {
+    transform: translateY(-10vh) translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(110vh) translateX(100px);
+    opacity: 0;
+  }
 `;
 
-const moveY = keyframes`
-  from { top: 0; }
-  to { top: calc(100% - 40px); }
-`;
-
-const PongContainer = styled.div`
+const HeartContainer = styled.div`
   position: fixed;
   top: 0;
   left: 0;
@@ -26,44 +27,45 @@ const PongContainer = styled.div`
 
 const Heart = styled.div`
   position: absolute;
+  top: -50px;
   font-size: ${props => props.size}px;
-  animation: 
-    ${moveX} ${props => props.durationX}s linear infinite alternate,
-    ${moveY} ${props => props.durationY}s linear infinite alternate;
+  left: ${props => props.left}%;
+  animation: ${fall} ${props => props.duration}s linear infinite;
+  animation-delay: ${props => props.delay}s;
   user-select: none;
-  will-change: transform, left, top;
 `;
 
-const PongHeartEffect = ({ isFading }) => {
+const HeartEffect = ({ isFading }) => {
     const [hearts, setHearts] = useState([]);
 
     useEffect(() => {
         const heartEmojis = ["❤️", "💖", "💝", "💗", "💓"];
-        const newHearts = Array.from({ length: 15 }).map((_, i) => ({
+        const newHearts = Array.from({ length: 30 }).map((_, i) => ({
             id: i,
             emoji: heartEmojis[Math.floor(Math.random() * heartEmojis.length)],
-            size: Math.random() * (40 - 25) + 25,
-            // Different durations for X and Y creates the "Pong" bounce pattern
-            durationX: Math.random() * (4 - 2) + 2,
-            durationY: Math.random() * (5 - 3) + 3,
+            left: Math.random() * 100,
+            size: Math.random() * (30 - 15) + 15,
+            duration: Math.random() * (5 - 3) + 3,
+            delay: Math.random() * 2,
         }));
         setHearts(newHearts);
     }, []);
 
     return (
-        <PongContainer isFading={isFading}>
+        <HeartContainer isFading={isFading}>
             {hearts.map(heart => (
                 <Heart
                     key={heart.id}
+                    left={heart.left}
                     size={heart.size}
-                    durationX={heart.durationX}
-                    durationY={heart.durationY}
+                    duration={heart.duration}
+                    delay={heart.delay}
                 >
                     {heart.emoji}
                 </Heart>
             ))}
-        </PongContainer>
+        </HeartContainer>
     );
 };
 
-export default PongHeartEffect;
+export default HeartEffect;
