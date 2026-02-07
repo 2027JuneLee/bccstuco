@@ -50,8 +50,10 @@ const Events = () => {
   const [showAddModal, setShowAddModal] = useState(false);
   const [filter, setFilter] = useState("upcoming"); // "upcoming" or "previous"
 
-  // New Event Form State
+  // Event Form State
   const [newEvent, setNewEvent] = useState({ title: "", date: "", body: "", image_url: "", is_upcoming: true });
+  const [isEditing, setIsEditing] = useState(false);
+  const [editingEventId, setEditingEventId] = useState(null);
   const [selectedFile, setSelectedFile] = useState(null);
   const [uploading, setUploading] = useState(false);
 
@@ -104,7 +106,20 @@ const Events = () => {
     }
   };
 
-  const handleAddEvent = async () => {
+  const handleEdit = (event) => {
+    setNewEvent({
+      title: event.title,
+      date: event.date,
+      body: event.body,
+      image_url: event.image_url,
+      is_upcoming: event.is_upcoming
+    });
+    setIsEditing(true);
+    setEditingEventId(event.id);
+    setShowAddModal(true);
+  };
+
+  const handleSaveEvent = async () => {
     setUploading(true);
     let imageUrl = newEvent.image_url;
 
@@ -130,19 +145,39 @@ const Events = () => {
       imageUrl = publicUrl;
     }
 
-    const { error } = await supabase
-      .from('events')
-      .insert([{ ...newEvent, image_url: imageUrl }]);
+    if (isEditing) {
+      const { error } = await supabase
+        .from('events')
+        .update({ ...newEvent, image_url: imageUrl })
+        .eq('id', editingEventId);
 
-    if (error) {
-      alert("Error adding event: " + error.message);
+      if (error) {
+        alert("Error updating event: " + error.message);
+      } else {
+        handleModalClose();
+        fetchEvents();
+      }
     } else {
-      setShowAddModal(false);
-      setNewEvent({ title: "", date: "", body: "", image_url: "", is_upcoming: true });
-      setSelectedFile(null);
-      fetchEvents();
+      const { error } = await supabase
+        .from('events')
+        .insert([{ ...newEvent, image_url: imageUrl }]);
+
+      if (error) {
+        alert("Error adding event: " + error.message);
+      } else {
+        handleModalClose();
+        fetchEvents();
+      }
     }
     setUploading(false);
+  };
+
+  const handleModalClose = () => {
+    setShowAddModal(false);
+    setIsEditing(false);
+    setEditingEventId(null);
+    setNewEvent({ title: "", date: "", body: "", image_url: "", is_upcoming: true });
+    setSelectedFile(null);
   };
 
   const handleDelete = async (id) => {
@@ -192,9 +227,14 @@ const Events = () => {
                 <Col key={event.id} md={4}>
                   <EventCard event={event} />
                   {isAdmin && (
-                    <Button variant="danger" size="sm" className="mt-2 w-100" onClick={() => handleDelete(event.id)}>
-                      Delete Event
-                    </Button>
+                    <div className="mt-2 d-flex gap-2">
+                      <Button variant="danger" size="sm" className="w-50" onClick={() => handleDelete(event.id)}>
+                        Delete
+                      </Button>
+                      <Button variant="warning" size="sm" className="w-50" onClick={() => handleEdit(event)}>
+                        Edit
+                      </Button>
+                    </div>
                   )}
                 </Col>
               ))
@@ -214,9 +254,11 @@ const Events = () => {
       </PageWrapper>
       <Footer />
 
-      {/* Add Event Modal */}
-      <Modal show={showAddModal} onHide={() => setShowAddModal(false)}>
-        <Modal.Header closeButton><Modal.Title>Add New Event</Modal.Title></Modal.Header>
+      {/* Add/Edit Event Modal */}
+      <Modal show={showAddModal} onHide={handleModalClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>{isEditing ? "Edit Event" : "Add New Event"}</Modal.Title>
+        </Modal.Header>
         <Modal.Body>
           <Form.Group className="mb-3">
             <Form.Label>Title</Form.Label>
@@ -235,7 +277,7 @@ const Events = () => {
             />
           </Form.Group>
           <Form.Group className="mb-3">
-            <Form.Label>Upload Image</Form.Label>
+            <Form.Label>Upload Image (Leave blank to keep current)</Form.Label>
             <Form.Control type="file" onChange={handleFileChange} />
           </Form.Group>
           <Form.Group className="mb-3">
@@ -244,9 +286,9 @@ const Events = () => {
           </Form.Group>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={() => setShowAddModal(false)} disabled={uploading}>Cancel</Button>
-          <Button variant="primary" onClick={handleAddEvent} disabled={uploading}>
-            {uploading ? "Uploading..." : "Save Event"}
+          <Button variant="secondary" onClick={handleModalClose} disabled={uploading}>Cancel</Button>
+          <Button variant="primary" onClick={handleSaveEvent} disabled={uploading}>
+            {uploading ? "Uploading..." : (isEditing ? "Update Event" : "Save Event")}
           </Button>
         </Modal.Footer>
       </Modal>

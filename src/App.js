@@ -6,6 +6,8 @@ import EventDetails from "./EventDetails";
 import About from "./About";
 import QnA from "./QnA";
 import Admin from "./Admin";
+import SecretPage from "./SecretPage";
+import Archives from "./Archives";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -20,6 +22,8 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/forum" element={<QnA />} />
           <Route path="/admin" element={<Admin />} />
+          <Route path="/secret_valentines" element={<SecretPage />} />
+          <Route path="/archives" element={<Archives />} />
         </Routes>
       </div>
     </Router>

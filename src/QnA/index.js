@@ -60,6 +60,9 @@ const QnA = () => {
     const [newAuthor, setNewAuthor] = useState("");
     const [isAdmin, setIsAdmin] = useState(false);
     const [answerInputs, setAnswerInputs] = useState({}); // Map of questionId -> answer text
+    const [editingQuestion, setEditingQuestion] = useState({}); // Map of questionId -> edited question text
+    const [editingAnswer, setEditingAnswer] = useState({}); // Map of questionId -> edited answer text
+    const [isEditingMode, setIsEditingMode] = useState({}); // Map of questionId -> { question: bool, answer: bool }
 
     useEffect(() => {
         fetchQuestions();
@@ -129,6 +132,54 @@ const QnA = () => {
         }
     };
 
+    const handleEditQuestion = (id, currentQuestion) => {
+        setEditingQuestion(prev => ({ ...prev, [id]: currentQuestion }));
+        setIsEditingMode(prev => ({ ...prev, [id]: { ...prev[id], question: true } }));
+    };
+
+    const handleEditAnswer = (id, currentAnswer) => {
+        setEditingAnswer(prev => ({ ...prev, [id]: currentAnswer }));
+        setIsEditingMode(prev => ({ ...prev, [id]: { ...prev[id], answer: true } }));
+    };
+
+    const handleSaveQuestion = async (id) => {
+        const updatedQuestion = editingQuestion[id];
+        if (!updatedQuestion) return;
+
+        const { error } = await supabase
+            .from('questions')
+            .update({ question: updatedQuestion })
+            .eq('id', id);
+
+        if (error) {
+            alert("Error updating question: " + error.message);
+        } else {
+            setIsEditingMode(prev => ({ ...prev, [id]: { ...prev[id], question: false } }));
+            fetchQuestions();
+        }
+    };
+
+    const handleSaveAnswer = async (id) => {
+        const updatedAnswer = editingAnswer[id];
+        if (!updatedAnswer) return;
+
+        const { error } = await supabase
+            .from('questions')
+            .update({ answer: updatedAnswer })
+            .eq('id', id);
+
+        if (error) {
+            alert("Error updating answer: " + error.message);
+        } else {
+            setIsEditingMode(prev => ({ ...prev, [id]: { ...prev[id], answer: false } }));
+            fetchQuestions();
+        }
+    };
+
+    const handleCancelEdit = (id, type) => {
+        setIsEditingMode(prev => ({ ...prev, [id]: { ...prev[id], [type]: false } }));
+    };
+
     return (
         <>
             <NavBar />
@@ -184,12 +235,52 @@ const QnA = () => {
                                             {q.is_answered ? <Badge bg="success">Answered</Badge> : <Badge bg="secondary">Pending</Badge>}
                                         </QuestionHeader>
                                         <Card.Body>
-                                            <Card.Text style={{ fontSize: "1.1rem" }}>{q.question}</Card.Text>
+                                            {isAdmin && isEditingMode[q.id]?.question ? (
+                                                <div className="mb-3">
+                                                    <Form.Control
+                                                        as="textarea"
+                                                        rows={3}
+                                                        value={editingQuestion[q.id] || q.question}
+                                                        onChange={(e) => setEditingQuestion(prev => ({ ...prev, [q.id]: e.target.value }))}
+                                                    />
+                                                    <div className="mt-2 d-flex gap-2">
+                                                        <Button size="sm" variant="success" onClick={() => handleSaveQuestion(q.id)}>Save</Button>
+                                                        <Button size="sm" variant="secondary" onClick={() => handleCancelEdit(q.id, 'question')}>Cancel</Button>
+                                                    </div>
+                                                </div>
+                                            ) : (
+                                                <div className="d-flex justify-content-between align-items-start">
+                                                    <Card.Text style={{ fontSize: "1.1rem", flex: 1 }}>{q.question}</Card.Text>
+                                                    {isAdmin && (
+                                                        <Button size="sm" variant="outline-primary" onClick={() => handleEditQuestion(q.id, q.question)}>Edit Q</Button>
+                                                    )}
+                                                </div>
+                                            )}
 
                                             {q.answer && (
                                                 <AnswerSection>
                                                     <strong>STUCO Response:</strong>
-                                                    <p className="mb-0">{q.answer}</p>
+                                                    {isAdmin && isEditingMode[q.id]?.answer ? (
+                                                        <div className="mt-2">
+                                                            <Form.Control
+                                                                as="textarea"
+                                                                rows={2}
+                                                                value={editingAnswer[q.id] || q.answer}
+                                                                onChange={(e) => setEditingAnswer(prev => ({ ...prev, [q.id]: e.target.value }))}
+                                                            />
+                                                            <div className="mt-2 d-flex gap-2">
+                                                                <Button size="sm" variant="success" onClick={() => handleSaveAnswer(q.id)}>Save</Button>
+                                                                <Button size="sm" variant="secondary" onClick={() => handleCancelEdit(q.id, 'answer')}>Cancel</Button>
+                                                            </div>
+                                                        </div>
+                                                    ) : (
+                                                        <div className="d-flex justify-content-between align-items-start">
+                                                            <p className="mb-0" style={{ flex: 1 }}>{q.answer}</p>
+                                                            {isAdmin && (
+                                                                <Button size="sm" variant="outline-success" onClick={() => handleEditAnswer(q.id, q.answer)}>Edit A</Button>
+                                                            )}
+                                                        </div>
+                                                    )}
                                                 </AnswerSection>
                                             )}
 

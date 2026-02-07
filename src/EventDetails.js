@@ -38,6 +38,7 @@ const EventBody = styled.div`
   line-height: 1.8;
   color: #333;
   white-space: pre-wrap; // Preserves line breaks
+  margin-bottom: 60px;
 `;
 
 const EventDetails = () => {
@@ -48,7 +49,7 @@ const EventDetails = () => {
 
     useEffect(() => {
         fetchEventDetails();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [id]);
 
     const fetchEventDetails = async () => {
@@ -75,7 +76,7 @@ const EventDetails = () => {
             <NavBar />
             <PageWrapper>
                 <Container>
-                    <Button variant="outline-secondary" className="mb-4" onClick={() => navigate('/events')}>
+                    <Button variant="outline-secondary" className="mb-4" style={{ marginTop: '30px' }} onClick={() => navigate('/events')}>
                         &larr; Back to Events
                     </Button>
 

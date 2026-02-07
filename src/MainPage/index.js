@@ -50,6 +50,70 @@ const StyledButton = styled(Button)`
   }
 `;
 
+const ButtonContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 30px;
+`;
+
+const HeartButton = styled.a`
+  position: relative;
+  width: 30px;
+  height: 30px;
+  background-color: #ff4d6d;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transform: rotate(-45deg);
+  transition: transform 0.2s, background-color 0.2s;
+  cursor: pointer;
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background-color: #ff4d6d;
+    border-radius: 50%;
+    transition: background-color 0.2s;
+  }
+
+  &::before {
+    top: -15px;
+    left: 0;
+  }
+
+  &::after {
+    left: 15px;
+    top: 0;
+  }
+
+  span {
+    position: relative;
+    z-index: 1;
+    transform: rotate(45deg);
+    color: white;
+    font-weight: bold;
+    font-size: 1.1rem;
+    display: block;
+    margin-top: -2px;
+    margin-left: 2px;
+  }
+
+  &:hover {
+    background-color: #ff758f;
+    transform: rotate(-45deg) scale(1.1);
+    text-decoration: none;
+    &::before, &::after {
+      background-color: #ff758f;
+    }
+  }
+`;
+
 const Section = styled.div`
   padding: 80px 0;
   background-color: ${(props) => (props.bg === "light" ? "#f8f9fa" : "white")};
@@ -112,7 +176,12 @@ function MainPage() {
         <Container>
           <HeroTitle>Welcome to BCC STUCO 2025~2026!</HeroTitle>
           <HeroSubtitle>Empowering Students, Building Community</HeroSubtitle>
-          <StyledButton size="lg" href="/about">Learn More</StyledButton>
+          <ButtonContainer>
+            <StyledButton size="lg" href="/about">Learn More</StyledButton>
+            <HeartButton href="/secret_valentines">
+              <span>?</span>
+            </HeartButton>
+          </ButtonContainer>
         </Container>
       </HeroSection>
 

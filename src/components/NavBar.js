@@ -51,6 +51,7 @@ function NavBar() {
             <StyledNavLink href="/events">Events</StyledNavLink>
             <StyledNavLink href="/forum">Q&A</StyledNavLink>
             <StyledNavLink href="/about">About</StyledNavLink>
+            <StyledNavLink href="/archives">The STUCO Archives</StyledNavLink>
           </Nav>
         </Navbar.Collapse>
       </Container>
