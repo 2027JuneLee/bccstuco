@@ -52,7 +52,7 @@ function NavBar() {
             <StyledNavLink href="/forum">Q&A</StyledNavLink>
             <StyledNavLink href="/about">About</StyledNavLink>
             <StyledNavLink href="/clubs">Clubs</StyledNavLink>
-            <StyledNavLink href="/archives">The STUCO Archives</StyledNavLink>
+            <StyledNavLink href="/archives">Archive</StyledNavLink>
           </Nav>
         </Navbar.Collapse>
       </Container>

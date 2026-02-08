@@ -3,6 +3,7 @@ import styled, { keyframes, css } from "styled-components";
 import { Button } from "react-bootstrap";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
+import html2canvas from "html2canvas";
 
 const fadeIn = keyframes`
   from { opacity: 0; transform: translateY(20px); }
@@ -116,9 +117,9 @@ const PieBuilder = styled.div`
 const PieBase = styled.div`
   width: ${props => props.size || '250px'};
   height: ${props => props.size || '250px'};
-  background: #f4d03f;
+  background: ${props => props.fillColor || '#f4d03f'};
   border-radius: 50%;
-  border: ${props => props.borderSize || '8px'} solid #d35400;
+  border: ${props => props.borderSize || '8px'} solid ${props => props.crustColor || '#d35400'};
   position: ${props => props.absolute ? 'absolute' : 'relative'};
   left: ${props => props.x}px;
   top: ${props => props.y}px;
@@ -205,6 +206,48 @@ const ActionButtons = styled.div`
   margin-top: 30px;
   display: flex;
   gap: 15px;
+  flex-wrap: wrap;
+  justify-content: center;
+`;
+
+const SliderContainer = styled.div`
+  width: 100%;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+`;
+
+const SliderGroup = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 100%;
+
+  label {
+    font-size: 0.9rem;
+    opacity: 0.8;
+  }
+`;
+
+const ColorSlider = styled.input`
+  -webkit-appearance: none;
+  width: 100%;
+  height: 8px;
+  border-radius: 5px;
+  background: linear-gradient(to right, #ff0000 0%, #ffff00 17%, #00ff00 33%, #00ffff 50%, #0000ff 67%, #ff00ff 83%, #ff0000 100%);
+  outline: none;
+  
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: white;
+    cursor: pointer;
+    box-shadow: 0 0 5px rgba(0,0,0,0.5);
+  }
 `;
 
 const ThrownPieContainer = styled.div`
@@ -253,6 +296,11 @@ function SecretPie() {
     const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
     const [reactions, setReactions] = useState({ left: null, right: null });
     const [customEmojiValue, setCustomEmojiValue] = useState("");
+    const [crustHue, setCrustHue] = useState(24); // Default #d35400 ish
+    const [fillHue, setFillHue] = useState(48); // Default #f4d03f ish
+
+    const crustColor = `hsl(${crustHue}, 100%, 41%)`;
+    const fillColor = `hsl(${fillHue}, 90%, 60%)`;
 
     const teacherReactions = [
         "OUCH! 😵‍💫",
@@ -271,6 +319,8 @@ function SecretPie() {
     ];
 
     const pieBaseRef = useRef(null);
+    const teacherRef = useRef(null);
+    const studentRef = useRef(null);
 
     useEffect(() => {
         const handleMouseMove = (e) => {
@@ -315,12 +365,31 @@ function SecretPie() {
         setIsThrowing(false);
         setSelectedEmoji(null);
         setCustomEmojiValue("");
+        setCrustHue(24);
+        setFillHue(48);
     };
 
     const prepareThrow = () => {
         //if (ingredients.length === 0 && !window.confirm("Throw an empty pie?")) return;
         setIsReadyToThrow(true);
         setSelectedEmoji(null);
+    };
+
+    const downloadPie = async () => {
+        if (!pieBaseRef.current) return;
+
+        // Temporarily hide markers or anything unwanted if needed
+        // but for now we just capture the pie
+        const canvas = await html2canvas(pieBaseRef.current, {
+            backgroundColor: null,
+            logging: false,
+            scale: 2 // Higher resolution
+        });
+
+        const link = document.createElement('a');
+        link.download = `custom-pie-${Date.now()}.png`;
+        link.href = canvas.toDataURL('image/png');
+        link.click();
     };
 
     const handleScreenClick = (e) => {
@@ -334,17 +403,25 @@ function SecretPie() {
         setThrownIngredients(currentPieIngredients);
         setIsThrowing(true);
 
-        // Detect hits on people
-        const screenWidth = window.innerWidth;
+        // Detect hits on people using bounding rectangles
+        if (teacherRef.current) {
+            const rect = teacherRef.current.getBoundingClientRect();
+            if (e.clientX >= rect.left && e.clientX <= rect.right &&
+                e.clientY >= rect.top && e.clientY <= rect.bottom) {
+                const msg = teacherReactions[Math.floor(Math.random() * teacherReactions.length)];
+                setReactions(prev => ({ ...prev, left: { text: msg, id: Date.now() } }));
+                setTimeout(() => setReactions(prev => ({ ...prev, left: null })), 2500);
+            }
+        }
 
-        if (e.clientX < screenWidth * 0.3) {
-            const msg = teacherReactions[Math.floor(Math.random() * teacherReactions.length)];
-            setReactions(prev => ({ ...prev, left: { text: msg, id: Date.now() } }));
-            setTimeout(() => setReactions(prev => ({ ...prev, left: null })), 2500);
-        } else if (e.clientX > screenWidth * 0.7) {
-            const msg = studentReactions[Math.floor(Math.random() * studentReactions.length)];
-            setReactions(prev => ({ ...prev, right: { text: msg, id: Date.now() } }));
-            setTimeout(() => setReactions(prev => ({ ...prev, right: null })), 2500);
+        if (studentRef.current) {
+            const rect = studentRef.current.getBoundingClientRect();
+            if (e.clientX >= rect.left && e.clientX <= rect.right &&
+                e.clientY >= rect.top && e.clientY <= rect.bottom) {
+                const msg = studentReactions[Math.floor(Math.random() * studentReactions.length)];
+                setReactions(prev => ({ ...prev, right: { text: msg, id: Date.now() } }));
+                setTimeout(() => setReactions(prev => ({ ...prev, right: null })), 2500);
+            }
         }
 
         setTimeout(() => {
@@ -353,7 +430,9 @@ function SecretPie() {
                 x: targetX,
                 y: targetY,
                 size: 80 + Math.random() * 60,
-                ingredients: currentPieIngredients
+                ingredients: currentPieIngredients,
+                crustColor,
+                fillColor
             };
 
             setPersistentPies(prev => [...prev, newPie]);
@@ -389,11 +468,11 @@ function SecretPie() {
                 </CustomCursor>
 
                 {/* People Targets */}
-                <Person side="left">
+                <Person side="left" ref={teacherRef}>
                     {reactions.left && <SpeechBubble key={reactions.left.id}>{reactions.left.text}</SpeechBubble>}
                     👨‍🏫
                 </Person>
-                <Person side="right">
+                <Person side="right" ref={studentRef}>
                     {reactions.right && <SpeechBubble key={reactions.right.id}>{reactions.right.text}</SpeechBubble>}
                     👩‍🎓
                 </Person>
@@ -406,6 +485,8 @@ function SecretPie() {
                         ref={pieBaseRef}
                         onClick={handlePieBaseClick}
                         clickable={!!selectedEmoji && !isReadyToThrow}
+                        crustColor={crustColor}
+                        fillColor={fillColor}
                     >
                         {ingredients.map(ing => (
                             <Ingredient
@@ -448,6 +529,29 @@ function SecretPie() {
                         />
                     </Controls>
 
+                    <SliderContainer>
+                        <SliderGroup>
+                            <label>Crust Color</label>
+                            <ColorSlider
+                                type="range"
+                                min="0"
+                                max="360"
+                                value={crustHue}
+                                onChange={(e) => setCrustHue(e.target.value)}
+                            />
+                        </SliderGroup>
+                        <SliderGroup>
+                            <label>Inner Color</label>
+                            <ColorSlider
+                                type="range"
+                                min="0"
+                                max="360"
+                                value={fillHue}
+                                onChange={(e) => setFillHue(e.target.value)}
+                            />
+                        </SliderGroup>
+                    </SliderContainer>
+
                     <ActionButtons>
                         <Button
                             variant="outline-danger"
@@ -455,6 +559,13 @@ function SecretPie() {
                             style={{ borderRadius: '20px', padding: '10px 20px', fontSize: '0.9rem' }}
                         >
                             Reset
+                        </Button>
+                        <Button
+                            variant="primary"
+                            onClick={downloadPie}
+                            style={{ borderRadius: '20px', padding: '10px 20px', fontSize: '0.9rem' }}
+                        >
+                            Download PNG
                         </Button>
                         {!isReadyToThrow ? (
                             <Button
@@ -478,7 +589,13 @@ function SecretPie() {
 
                 {isThrowing && (
                     <ThrownPieContainer>
-                        <PieBase size="100px" borderSize="3px" margin="0">
+                        <PieBase
+                            size="100px"
+                            borderSize="3px"
+                            margin="0"
+                            crustColor={crustColor}
+                            fillColor={fillColor}
+                        >
                             {thrownIngredients.map(ing => (
                                 <Ingredient
                                     key={ing.id}
@@ -506,6 +623,8 @@ function SecretPie() {
                         zIndex="5"
                         animated
                         style={{ transform: 'translate(-50%, -50%)' }}
+                        crustColor={pie.crustColor || crustColor}
+                        fillColor={pie.fillColor || fillColor}
                     >
                         {pie.ingredients.map(ing => (
                             <Ingredient

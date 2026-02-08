@@ -71,12 +71,34 @@ function Archives() {
             link: "https://bcc-stuco.web.app/",
             type: "Website",
             image: "/1stucoproto.png"
-        }, {
+        },
+        {
             title: "Rickroll",
             description: "This is a Rickroll.",
             link: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
             type: "Easter Egg",
             image: "/rickroll.jpeg"
+        },
+        {
+            title: "Secret Garden",
+            description: "Grow a garden!",
+            link: "/secret_garden",
+            type: "Minigame",
+            image: "https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?auto=format&fit=crop&w=400&q=80"
+        },
+        {
+            title: "Secret Pong",
+            description: "Pong but slightly more evil.",
+            link: "/secret_pong",
+            type: "Minigame",
+            image: "https://images.unsplash.com/photo-1624936188350-883a61a44116?auto=format&fit=crop&w=400&q=80"
+        },
+        {
+            title: "Secret Pie",
+            description: "Design and throw pies & get ready for Pie Day!",
+            link: "/secret_pie",
+            type: "Event/Minigame",
+            image: "https://images.unsplash.com/photo-1519915028121-7d3463d20b13?auto=format&fit=crop&w=400&q=80"
         },
     ];
 

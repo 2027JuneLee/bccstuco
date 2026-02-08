@@ -127,7 +127,7 @@ function Clubs() {
             image: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&w=800&q=80",
             hasMinigame: true,
             minigameUrl: "/secret_pie",
-            minigameBg: "https://images.unsplash.com/photo-1572381734276-8f3fe071720d?auto=format&fit=crop&w=400&q=80"
+            minigameBg: "https://images.unsplash.com/photo-1519915028121-7d3463d20b13?auto=format&fit=crop&w=400&q=80"
         },
         {
             name: "MUN/Debate Club",
