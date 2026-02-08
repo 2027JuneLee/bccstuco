@@ -6,17 +6,9 @@ import Footer from "../components/Footer";
 
 // Import Assets
 import bgGate from "./assets/bg_gate.jpg";
-import bgMeadow from "./assets/bg_meadow.jpg";
-import plant1 from "./assets/plant1.jpg";
-import plant2 from "./assets/plant2.jpg";
-import plant3 from "./assets/plant3.jpg";
-import plant4 from "./assets/plant4.jpg";
-import plant5 from "./assets/plant5.jpg";
-import plant6 from "./assets/plant6.jpg";
-import plant7 from "./assets/plant7.jpg";
-import plant8 from "./assets/plant8.jpg";
-import plant9 from "./assets/plant9.jpg";
-import plant10 from "./assets/plant10.jpg";
+
+const bgMeadow = "https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?auto=format&fit=crop&q=80&w=2000";
+// (Plant image imports removed in favor of emojis)
 
 const fadeIn = keyframes`
   from { opacity: 0; transform: translateY(20px); }
@@ -76,86 +68,211 @@ const ComingSoonText = styled.p`
   line-height: 1.6;
 `;
 
-const PlantOverlay = styled.img`
+const EmojiPlant = styled.div`
   position: absolute;
-  width: ${props => props.size}px;
-  height: auto;
+  font-size: ${props => props.size}px;
   left: ${props => props.x}px;
   top: ${props => props.y}px;
   transform: translate(-50%, -50%);
   animation: ${popUp} 0.5s ease-out forwards;
-  pointer-events: none;
+  pointer-events: ${props => props.active ? 'auto' : 'none'};
   z-index: 5;
+  filter: ${props => props.watered ? 'none' : 'grayscale(100%) brightness(0.7)'};
+  transition: filter 0.3s ease, transform 0.2s ease;
+  cursor: pointer;
+  user-select: none;
+
+  &:hover {
+    transform: translate(-50%, -50%) scale(1.1);
+  }
 `;
 
-const plantImages = [
-    plant1, plant2, plant3, plant4, plant5,
-    plant6, plant7, plant8, plant9, plant10
+const HUD = styled.div`
+  position: absolute;
+  top: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 40px;
+  z-index: 20;
+  pointer-events: none;
+`;
+
+const StatItem = styled.div`
+  background: rgba(0, 0, 0, 0.6);
+  padding: 10px 25px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(5px);
+  color: white;
+  font-size: 1.5rem;
+  font-weight: bold;
+`;
+
+const plantEmojis = [
+  "🌱", "🌿", "🪴", "🎄", "🍀", "🌵", "🌴", "🌳", "🌲"
+];
+
+const flowerEmojis = [
+  "🌸", "🌼", "🌻", "🌷", "🌹", "🌺", "🪻", "🏵️", "🪷"
 ];
 
 function SecretGarden() {
-    const [isStarted, setIsStarted] = React.useState(false);
-    const [plants, setPlants] = React.useState([]);
+  const [gameState, setGameState] = React.useState("menu"); // menu, playing, finished
+  const [plants, setPlants] = React.useState([]);
+  const [score, setScore] = React.useState(0);
+  const [timeLeft, setTimeLeft] = React.useState(30);
+  const [highScore, setHighScore] = React.useState(() => {
+    return parseInt(localStorage.getItem("gardenHighScore") || "0");
+  });
 
-    const handlePlant = (e) => {
-        if (!isStarted) return;
+  // Game Timer
+  React.useEffect(() => {
+    let timer;
+    if (gameState === "playing" && timeLeft > 0) {
+      timer = setInterval(() => {
+        setTimeLeft(prev => prev - 1);
+      }, 1000);
+    } else if (timeLeft === 0) {
+      setGameState("finished");
+    }
+    return () => clearInterval(timer);
+  }, [gameState, timeLeft]);
 
-        // Calculate position relative to container
-        const rect = e.currentTarget.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
+  // High Score logic
+  React.useEffect(() => {
+    if (gameState === "finished") {
+      if (score > highScore) {
+        setHighScore(score);
+        localStorage.setItem("gardenHighScore", score.toString());
+      }
+    }
+  }, [gameState, score, highScore]);
 
+  // Spawning Logic
+  React.useEffect(() => {
+    let spawnInterval;
+    if (gameState === "playing") {
+      spawnInterval = setInterval(() => {
         const newPlant = {
-            id: Date.now(),
-            x,
-            y,
-            size: Math.random() * 50 + 60, // Random size between 60 and 110
-            imgIndex: Math.floor(Math.random() * plantImages.length)
+          id: Date.now(),
+          x: Math.random() * (window.innerWidth - 100) + 50,
+          y: Math.random() * (window.innerHeight - 250) + 150,
+          size: Math.random() * 40 + 80, // Slightly larger base size
+          emojiIndex: Math.floor(Math.random() * plantEmojis.length),
+          flowerIndex: Math.floor(Math.random() * flowerEmojis.length),
+          watered: false,
+          expired: false
         };
-
         setPlants(prev => [...prev, newPlant]);
-    };
 
-    return (
-        <>
-            <NavBar />
-            <GardenContainer isStarted={isStarted} onClick={handlePlant}>
-                <ContentBox hide={isStarted}>
-                    <GardenTitle>The Secret Garden</GardenTitle>
-                    <ComingSoonText>
-                        Something botanical is growing here... <br />
-                        Our Gardening Club is carefully cultivating a special minigame just for you.
-                    </ComingSoonText>
-                    <div style={{ fontSize: "5rem", marginBottom: "30px" }}>🌱🌷🌻</div>
-                    <Button
-                        variant="outline-light"
-                        onClick={() => setIsStarted(true)}
-                        size="lg"
-                        style={{ borderRadius: "30px", padding: "12px 40px", fontWeight: "bold" }}
-                    >
-                        Enter the Garden
-                    </Button>
-                </ContentBox>
+        // Auto-remove after 3 seconds if not watered
+        setTimeout(() => {
+          setPlants(prev => prev.filter(p => p.id !== newPlant.id || p.watered));
+        }, 3000);
 
-                {plants.map(plant => (
-                    <PlantOverlay
-                        key={plant.id}
-                        src={plantImages[plant.imgIndex]}
-                        x={plant.x}
-                        y={plant.y}
-                        size={plant.size}
-                    />
-                ))}
+      }, 800);
+    }
+    return () => clearInterval(spawnInterval);
+  }, [gameState]);
 
-                {isStarted && (
-                    <div style={{ position: 'absolute', bottom: '20px', left: '0', right: '0', pointerEvents: 'none', textShadow: '2px 2px 4px rgba(0,0,0,0.5)' }}>
-                        <p style={{ fontSize: '1.2rem' }}>Click anywhere to plant a flower!</p>
-                    </div>
-                )}
-            </GardenContainer>
-            <Footer />
-        </>
-    );
+  const startGame = () => {
+    setGameState("playing");
+    setPlants([]);
+    setScore(0);
+    setTimeLeft(30);
+  };
+
+  const handleWaterTarget = (id) => {
+    setPlants(prev => prev.map(p => {
+      if (p.id === id && !p.watered) {
+        setScore(s => s + 10);
+        // Remove blooming plant after 1 second
+        setTimeout(() => {
+          setPlants(current => current.filter(cp => cp.id !== id));
+        }, 1000);
+        return { ...p, watered: true };
+      }
+      return p;
+    }));
+  };
+
+  return (
+    <>
+      <NavBar />
+      <GardenContainer isStarted={gameState === "playing"} onClick={(e) => e.stopPropagation()}>
+        {/* HUD */}
+        {gameState === "playing" && (
+          <HUD>
+            <StatItem>💧 Score: {score}</StatItem>
+            <StatItem>⏳ Time: {timeLeft}s</StatItem>
+          </HUD>
+        )}
+
+        {/* Splash Screen */}
+        <ContentBox hide={gameState !== "menu"}>
+          <GardenTitle>The Secret Garden</GardenTitle>
+          <ComingSoonText>
+            Water the Digital Plants! <br />
+            Click on the plants to water them.
+          </ComingSoonText>
+          <div style={{ fontSize: "5rem", marginBottom: "30px" }}>🌱🌷🌻</div>
+          <Button
+            variant="outline-light"
+            onClick={startGame}
+            size="lg"
+            style={{ borderRadius: "30px", padding: "12px 40px", fontWeight: "bold" }}
+          >
+            Enter the Garden
+          </Button>
+        </ContentBox>
+
+        {/* Game Over Screen */}
+        <ContentBox hide={gameState !== "finished"}>
+          <GardenTitle>Garden Tended!</GardenTitle>
+          <ComingSoonText>
+            Next Challenge: Touch Grass <br />
+            <b>Score: {score}</b> <br />
+            <span style={{ fontSize: "1rem" }}>High Score: {highScore}</span>
+          </ComingSoonText>
+          <div style={{ fontSize: "5rem", marginBottom: "30px" }}>🌸🌼🌻</div>
+          <Button
+            variant="outline-light"
+            onClick={startGame}
+            size="lg"
+            style={{ borderRadius: "30px", padding: "12px 40px", fontWeight: "bold" }}
+          >
+            Tend Again
+          </Button>
+        </ContentBox>
+
+        {/* Active Game Elements */}
+        {plants.map(plant => (
+          <EmojiPlant
+            key={plant.id}
+            x={plant.x}
+            y={plant.y}
+            size={plant.size}
+            watered={plant.watered}
+            active={gameState === "playing" && !plant.watered}
+            onClick={(e) => {
+              e.stopPropagation();
+              handleWaterTarget(plant.id);
+            }}
+          >
+            {plant.watered ? flowerEmojis[plant.flowerIndex] : plantEmojis[plant.emojiIndex]}
+          </EmojiPlant>
+        ))}
+
+        {gameState === "playing" && plants.length === 0 && (
+          <div style={{ position: 'absolute', bottom: '20px', left: '0', right: '0', pointerEvents: 'none', textShadow: '2px 2px 4px rgba(0,0,0,0.5)' }}>
+            <p style={{ fontSize: '1.2rem' }}>Wait for plants to appear and water them!</p>
+          </div>
+        )}
+      </GardenContainer>
+      <Footer />
+    </>
+  );
 }
 
 export default SecretGarden;

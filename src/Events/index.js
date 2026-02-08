@@ -48,10 +48,10 @@ const Events = () => {
   const [events, setEvents] = useState([]);
   const [isAdmin, setIsAdmin] = useState(false);
   const [showAddModal, setShowAddModal] = useState(false);
-  const [filter, setFilter] = useState("upcoming"); // "upcoming" or "previous"
+  const [filter, setFilter] = useState("upcoming"); // "upcoming", "previous", "club"
 
   // Event Form State
-  const [newEvent, setNewEvent] = useState({ title: "", date: "", body: "", image_url: "", is_upcoming: true });
+  const [newEvent, setNewEvent] = useState({ title: "", date: "", body: "", image_url: "", is_upcoming: true, category: "general" });
   const [isEditing, setIsEditing] = useState(false);
   const [editingEventId, setEditingEventId] = useState(null);
   const [selectedFile, setSelectedFile] = useState(null);
@@ -59,34 +59,39 @@ const Events = () => {
 
   const fetchEvents = useCallback(async () => {
     const today = new Date().toISOString().split('T')[0];
-    const isUpcomingFilter = filter === "upcoming";
 
     let query = supabase.from('events').select('*');
 
-    if (isUpcomingFilter) {
-      // Upcoming: manually checked AND date is today or later
-      query = query.eq('is_upcoming', true).gte('date', today);
+    if (filter === "upcoming") {
+      // Upcoming General Events: upcoming AND date >= today AND (category is null or general)
+      query = query.eq('is_upcoming', true).gte('date', today).or('category.eq.general,category.is.null');
+      query = query.order('date', { ascending: false });
+    } else if (filter === "club") {
+      // Club Events: category = 'club' (Show all club events, maybe sorted by date desc?)
+      // Let's show upcoming club events first, or just all of them. 
+      // User request was "add club events section". 
+      // Let's filter for club events.
+      query = query.eq('category', 'club').order('date', { ascending: false });
     } else {
       // Previous: manually unchecked OR date has passed
       query = query.or(`is_upcoming.eq.false,date.lt.${today}`);
+      query = query.order('date', { ascending: false });
     }
 
-    const { data, error } = await query.order('date', { ascending: isUpcomingFilter });
+    const { data, error } = await query;
 
     if (error) {
       console.error('Error fetching events:', error);
-      // If error is because column is missing, notify user but maybe show all
-      if (error.message.includes("column \"is_upcoming\" does not exist")) {
-        alert("Database update required! Please run the updated schema.sql in Supabase to enable event sorting.");
+      if (error.message.includes("column \"category\" does not exist")) {
+        alert("Database update required! Please run the updated schema.sql in Supabase to enable Club Events.");
       }
     } else {
-      setEvents(data);
+      setEvents(data || []);
     }
   }, [filter]);
 
   useEffect(() => {
     fetchEvents();
-    // Check for admin cookie
     const adminCookie = getCookie("adminAuthenticated");
     if (adminCookie === "true") {
       setIsAdmin(true);
@@ -112,7 +117,8 @@ const Events = () => {
       date: event.date,
       body: event.body,
       image_url: event.image_url,
-      is_upcoming: event.is_upcoming
+      is_upcoming: event.is_upcoming,
+      category: event.category || "general"
     });
     setIsEditing(true);
     setEditingEventId(event.id);
@@ -145,10 +151,12 @@ const Events = () => {
       imageUrl = publicUrl;
     }
 
+    const eventData = { ...newEvent, image_url: imageUrl };
+
     if (isEditing) {
       const { error } = await supabase
         .from('events')
-        .update({ ...newEvent, image_url: imageUrl })
+        .update(eventData)
         .eq('id', editingEventId);
 
       if (error) {
@@ -160,7 +168,7 @@ const Events = () => {
     } else {
       const { error } = await supabase
         .from('events')
-        .insert([{ ...newEvent, image_url: imageUrl }]);
+        .insert([eventData]);
 
       if (error) {
         alert("Error adding event: " + error.message);
@@ -176,7 +184,7 @@ const Events = () => {
     setShowAddModal(false);
     setIsEditing(false);
     setEditingEventId(null);
-    setNewEvent({ title: "", date: "", body: "", image_url: "", is_upcoming: true });
+    setNewEvent({ title: "", date: "", body: "", image_url: "", is_upcoming: true, category: "general" });
     setSelectedFile(null);
   };
 
@@ -192,12 +200,18 @@ const Events = () => {
     }
   };
 
+  const getPageTitle = () => {
+    if (filter === "upcoming") return "Upcoming Events";
+    if (filter === "club") return "Club Events";
+    return "Previous Events";
+  };
+
   return (
     <>
       <NavBar />
       <PageWrapper>
         <Container style={{ flex: 1, display: "flex", flexDirection: "column" }}>
-          <Title>{filter === "upcoming" ? "Upcoming Events" : "Previous Events"}</Title>
+          <Title>{getPageTitle()}</Title>
 
           <div className="text-center mb-5" style={{ background: '#f8f9fa', padding: '20px', borderRadius: '15px', boxShadow: '0 4px 6px rgba(0,0,0,0.05)' }}>
             <h5 className="mb-3 text-muted">Filter Events</h5>
@@ -211,17 +225,25 @@ const Events = () => {
             </Button>
             <Button
               variant={filter === "previous" ? "primary" : "outline-primary"}
-              className="px-4 py-2"
+              className="me-3 px-4 py-2"
               style={{ borderRadius: '30px', fontWeight: 'bold' }}
               onClick={() => setFilter("previous")}
             >
               Previous
             </Button>
+            <Button
+              variant={filter === "club" ? "primary" : "outline-primary"}
+              className="px-4 py-2"
+              style={{ borderRadius: '30px', fontWeight: 'bold' }}
+              onClick={() => setFilter("club")}
+            >
+              Club Events
+            </Button>
           </div>
 
           <Row>
             {events.length === 0 ? (
-              <p className="text-center">No {filter} events found.</p>
+              <p className="text-center">No {filter === 'club' ? 'club' : filter} events found.</p>
             ) : (
               events.map(event => (
                 <Col key={event.id} md={4}>
@@ -267,6 +289,16 @@ const Events = () => {
           <Form.Group className="mb-3">
             <Form.Label>Date</Form.Label>
             <Form.Control type="date" value={newEvent.date} onChange={(e) => setNewEvent({ ...newEvent, date: e.target.value })} />
+          </Form.Group>
+          <Form.Group className="mb-3">
+            <Form.Label>Event Type</Form.Label>
+            <Form.Select
+              value={newEvent.category || "general"}
+              onChange={(e) => setNewEvent({ ...newEvent, category: e.target.value })}
+            >
+              <option value="general">STUCO Event</option>
+              <option value="club">Club Event</option>
+            </Form.Select>
           </Form.Group>
           <Form.Group className="mb-3">
             <Form.Check

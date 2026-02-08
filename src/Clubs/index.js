@@ -56,7 +56,7 @@ const StyledCard = styled(Card)`
 
 const MinigameButton = styled(Button)`
   background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
-              url("https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?auto=format&fit=crop&w=400&q=80");
+              url(${props => props.bgImage || "https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?auto=format&fit=crop&w=400&q=80"});
   background-size: cover;
   background-position: center;
   border: none;
@@ -75,6 +75,16 @@ const MinigameButton = styled(Button)`
     filter: brightness(1.1);
     color: white;
   }
+`;
+
+const DisabledButton = styled(Button)`
+  border-radius: 25px;
+  background-color: #e9ecef !important;
+  border-color: #dee2e6 !important;
+  color: #adb5bd !important;
+  flex: 1;
+  cursor: not-allowed;
+  pointer-events: none;
 `;
 
 const SponsorSection = styled.div`
@@ -97,39 +107,38 @@ function Clubs() {
     const clubItems = [
         {
             name: "Gardening Club",
-            description: "Dedicated to sustainability and environmental awareness within our community.",
-            activities: "Recycling drives, garden maintenance, and advocacy campaigns.",
+            description: "Gardening Club tends to the school garden and manages the aquarium!",
             image: "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=800&q=80",
-            hasMinigame: true
+            hasMinigame: true,
+            minigameUrl: "/secret_garden",
+            minigameBg: "https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?auto=format&fit=crop&w=400&q=80"
         },
         {
             name: "Table Tennis Club",
-            description: "Perfecting your serve and smash! Join us for recreational and competitive table tennis matches.",
-            activities: "Weekly practice sessions, school tournaments, and strategic skill building.",
-            image: "https://images.unsplash.com/photo-1534158914592-062992fbe900?auto=format&fit=crop&w=800&q=80"
+            description: "Weekly ping pong matches!",
+            image: "https://images.unsplash.com/photo-1534158914592-062992fbe900?auto=format&fit=crop&w=800&q=80",
+            hasMinigame: true,
+            minigameUrl: "/secret_pong",
+            minigameBg: "https://images.unsplash.com/photo-1624936188350-883a61a44116?auto=format&fit=crop&w=400&q=80"
         },
         {
             name: "MUN/Debate Club",
             description: "Engaging in parliamentary debate and simulating United Nations conferences to solve global challenges.",
-            activities: "Public speaking workshops, mock UN sessions, and inter-school competitions.",
-            image: "https://images.unsplash.com/photo-1540910419892-f0c742a45301?auto=format&fit=crop&w=800&q=80"
+            image: "https://images.unsplash.com/photo-1536181783029-1097aaf179de?auto=format&fit=crop&w=800&q=80"
         },
         {
-            name: "History Club",
-            description: "Diving deep into the chronicles of the past to gain perspectives on our modern world.",
-            activities: "Historical site visits, documentary screenings, and collaborative research projects.",
+            name: "History & Culture Club",
+            description: "History & Culture Club is creating a blog that discusses the history of diseases and their effects on societies.",
             image: "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=800&q=80"
         },
         {
             name: "AMC Club",
-            description: "Mastering complex mathematical concepts and preparing for the American Mathematics Competitions.",
-            activities: "Advanced problem-solving sessions, logic puzzles, and competition training.",
+            description: "AMC Club helps students prepare for AMC and other math-related competitions and organizes Math-related school events.",
             image: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&w=800&q=80"
         },
         {
             name: "Future Engineers Club",
-            description: "Exploring the intersections of technology, physics, and design to build innovative prototypes.",
-            activities: "CAD design workshops, 3D printing projects, and engineering challenges.",
+            description: "Future Engineers Club dives deep into engineering and mechanics to design and build vehicles.",
             image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80"
         }
     ];
@@ -148,10 +157,12 @@ function Clubs() {
                         <Container>
                             <SponsorTitle>Sponsor a Club</SponsorTitle>
                             <p style={{ fontSize: '1.1rem', marginBottom: '30px' }}>
-                                Are you a local business or individual looking to support student initiatives?
-                                BCC STUCO offers sponsorship opportunities for all recognized school clubs.
+                                Do you want STUCO to sponor your club on our website? Do you want STUCO to support and advertise
+                                <br></br>your events on social media? BCC STUCO offers shout-outs and support for all school clubs!
                             </p>
                             <Button
+                                as="a"
+                                href="mailto:2027junelee@usbccollegiate.org"
                                 variant="light"
                                 size="lg"
                                 style={{ borderRadius: '30px', color: '#023e8a', fontWeight: 'bold', padding: '12px 40px' }}
@@ -170,19 +181,16 @@ function Clubs() {
                                         <Card.Text style={{ color: '#555', fontSize: '0.95rem' }}>
                                             {club.description}
                                         </Card.Text>
-                                        <div className="mt-2 mb-3">
-                                            <strong>Activities:</strong>
-                                            <p style={{ fontSize: '0.85rem', color: '#777' }}>{club.activities}</p>
-                                        </div>
+
                                         <div className="mt-auto d-flex gap-2">
-                                            <Button
-                                                variant="outline-primary"
-                                                style={{ borderRadius: '25px', borderColor: '#023e8a', color: '#023e8a', flex: 1 }}
-                                            >
+                                            <DisabledButton variant="outline-primary">
                                                 Learn More
-                                            </Button>
+                                            </DisabledButton>
                                             {club.hasMinigame && (
-                                                <MinigameButton href="/secret_garden">
+                                                <MinigameButton
+                                                    href={club.minigameUrl}
+                                                    bgImage={club.minigameBg}
+                                                >
                                                     Minigame
                                                 </MinigameButton>
                                             )}

@@ -37,7 +37,8 @@ create table if not exists public.events (
   date date not null,
   body text,
   image_url text,
-  is_upcoming boolean default true
+  is_upcoming boolean default true,
+  category text default 'general' -- 'general' (STUCO) or 'club'
 );
 
 -- Add is_upcoming column if it doesn't exist (in case table existed but was old)
@@ -48,6 +49,16 @@ begin
   end if;
 end
 $$;
+
+-- Add category column if it doesn't exist
+do $$
+begin
+  if not exists (select 1 from information_schema.columns where table_name='events' and column_name='category') then
+    alter table public.events add column category text default 'general';
+  end if;
+end
+$$;
+
 
 -- Enable RLS for events
 alter table public.events enable row level security;
