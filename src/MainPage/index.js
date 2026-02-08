@@ -191,7 +191,7 @@ function MainPage() {
 
       <Section>
         <Container>
-          <SectionTitle>About BCC</SectionTitle>
+          <SectionTitle>About STUCO 2025~2026</SectionTitle>
           <Row>
             <Col md={6}>
               <img src="/about_bcc_stock.jpg" alt="About BCC" className="img-fluid mb-4" />
@@ -199,10 +199,10 @@ function MainPage() {
             <Col md={6}>
               <h3 style={{ fontFamily: "Cinzel", color: "#1d3557" }}>Our Mission</h3>
               <p style={{ fontFamily: "Gill Sans", fontSize: "1.1rem", lineHeight: "1.8" }}>
-                BC Collegiate Upper is dedicated to fostering an environment where students can thrive academically, socially, and creatively.
-                Our Student Council works tirelessly to represent the student body, organize engaging events, and promote a spirit of inclusivity and excellence.
+                Welcome to BCC's Student Council website!
+                BCC's very own Student Council (STUCO) is working hard to represent BCC students, organize fun events, and promote BCC's core values and spirit! This website aims to showcase STUCO's activities and events, and act as a platform for students and BCC clubs to connect and cooperate with STUCO members!
               </p>
-              <StyledButton href="/about">Read Our Story</StyledButton>
+              <StyledButton href="/about">About STUCO</StyledButton>
             </Col>
           </Row>
         </Container>
@@ -217,7 +217,7 @@ function MainPage() {
                 <Card.Body className="text-center p-4">
                   <Card.Title>About</Card.Title>
                   <Card.Text>
-                    Learn about our mission, our dedicated student council members, and the values that drive our community forward.
+                    Learn about STUCO's mission, who we are, and why we made this website.
                   </Card.Text>
                   <Button variant="outline-primary" href="/about">Learn More</Button>
                 </Card.Body>
@@ -228,7 +228,7 @@ function MainPage() {
                 <Card.Body className="text-center p-4">
                   <Card.Title>Events</Card.Title>
                   <Card.Text>
-                    Stay updated with our latest school events, spirit weeks, assemblies, and community service opportunities.
+                    See what events and activities STUCO is planning and what it did over the years.
                   </Card.Text>
                   <Button variant="outline-primary" href="/events">Upcoming Events</Button>
                 </Card.Body>
@@ -239,7 +239,7 @@ function MainPage() {
                 <Card.Body className="text-center p-4">
                   <Card.Title>Q&A Forum</Card.Title>
                   <Card.Text>
-                    Have a question? Visit our student forum to ask questions, share ideas, and get answers from the Student Council.
+                    Want to ask something to STUCO? Use to forum and share your suggestions and questions!
                   </Card.Text>
                   <Button variant="outline-primary" href="/forum">Visit Forum</Button>
                 </Card.Body>

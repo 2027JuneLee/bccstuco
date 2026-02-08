@@ -11,6 +11,7 @@ import Archives from "./Archives";
 import Clubs from "./Clubs";
 import SecretGarden from "./SecretGarden";
 import SecretPong from "./SecretPong";
+import SecretPie from "./SecretPie";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
           <Route path="/clubs" element={<Clubs />} />
           <Route path="/secret_garden" element={<SecretGarden />} />
           <Route path="/secret_pong" element={<SecretPong />} />
+          <Route path="/secret_pie" element={<SecretPie />} />
         </Routes>
       </div>
     </Router>

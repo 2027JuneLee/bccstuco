@@ -122,6 +122,14 @@ function Clubs() {
             minigameBg: "https://images.unsplash.com/photo-1624936188350-883a61a44116?auto=format&fit=crop&w=400&q=80"
         },
         {
+            name: "AMC Club",
+            description: "AMC Club helps students prepare for AMC and other math-related competitions and organizes Math-related school events.",
+            image: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&w=800&q=80",
+            hasMinigame: true,
+            minigameUrl: "/secret_pie",
+            minigameBg: "https://images.unsplash.com/photo-1572381734276-8f3fe071720d?auto=format&fit=crop&w=400&q=80"
+        },
+        {
             name: "MUN/Debate Club",
             description: "Engaging in parliamentary debate and simulating United Nations conferences to solve global challenges.",
             image: "https://images.unsplash.com/photo-1536181783029-1097aaf179de?auto=format&fit=crop&w=800&q=80"
@@ -130,11 +138,6 @@ function Clubs() {
             name: "History & Culture Club",
             description: "History & Culture Club is creating a blog that discusses the history of diseases and their effects on societies.",
             image: "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=800&q=80"
-        },
-        {
-            name: "AMC Club",
-            description: "AMC Club helps students prepare for AMC and other math-related competitions and organizes Math-related school events.",
-            image: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&w=800&q=80"
         },
         {
             name: "Future Engineers Club",
@@ -155,7 +158,7 @@ function Clubs() {
 
                     <SponsorSection>
                         <Container>
-                            <SponsorTitle>Sponsor a Club</SponsorTitle>
+                            <SponsorTitle>Club Sponsorship</SponsorTitle>
                             <p style={{ fontSize: '1.1rem', marginBottom: '30px' }}>
                                 Do you want STUCO to sponor your club on our website? Do you want STUCO to support and advertise
                                 <br></br>your events on social media? BCC STUCO offers shout-outs and support for all school clubs!

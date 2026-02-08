@@ -38,9 +38,9 @@ function About() {
             <PageWrapper>
                 <Container>
                     <Content>
-                        <Title>About BCC STUCO</Title>
+                        <Title>About STUCO</Title>
                         <TextBlock>
-                            <p>
+                            {/*<p>
                                 Welcome to the BC Collegiate Student Council (STUCO). We are dedicated to serving the student body
                                 by organizing events, fostering school spirit, and providing a voice for students.
                             </p>
@@ -52,6 +52,8 @@ function About() {
                                 <strong>2025-2026 Academic Year</strong> marks a new chapter of growth and community building.
                                 Stay tuned for exciting updates!
                             </p>
+                            */}
+                            <p>Coming Soon!!!!!</p>
                         </TextBlock>
                     </Content>
                 </Container>
