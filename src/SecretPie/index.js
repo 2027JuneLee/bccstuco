@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import styled, { keyframes, css } from "styled-components";
-import { Button, Container } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 
@@ -334,12 +334,8 @@ function SecretPie() {
         setThrownIngredients(currentPieIngredients);
         setIsThrowing(true);
 
-        const targetX_global = e.clientX;
-        const targetY_global = e.clientY;
-
         // Detect hits on people
         const screenWidth = window.innerWidth;
-        const screenHeight = window.innerHeight;
 
         if (e.clientX < screenWidth * 0.3) {
             const msg = teacherReactions[Math.floor(Math.random() * teacherReactions.length)];
