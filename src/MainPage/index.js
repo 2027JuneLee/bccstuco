@@ -3,15 +3,29 @@ import styled from "styled-components";
 import { Container, Row, Col, Button, Card } from "react-bootstrap";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
-import HeartEffect from "../components/HeartEffect";
+
 import "../styles/index.css"; // Ensure global styles are loaded
 
 // Styled Components for Custom UI
 const HeroSection = styled.div`
-  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
-    url("/hero_bg.jpg");
+  background: linear-gradient(135deg, #023e8a 0%, #0077b6 50%, #0096c7 100%);
   background-size: cover;
   background-position: center;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+      radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.1) 0%, transparent 20%),
+      radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.1) 0%, transparent 20%);
+    pointer-events: none;
+  }
   height: 85vh;
   display: flex;
   align-items: center;
@@ -58,61 +72,7 @@ const ButtonContainer = styled.div`
   margin-top: 30px;
 `;
 
-const HeartButton = styled.a`
-  position: relative;
-  width: 30px;
-  height: 30px;
-  background-color: #ff4d6d;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  transform: rotate(-45deg);
-  transition: transform 0.2s, background-color 0.2s;
-  cursor: pointer;
 
-  &::before,
-  &::after {
-    content: "";
-    position: absolute;
-    width: 30px;
-    height: 30px;
-    background-color: #ff4d6d;
-    border-radius: 50%;
-    transition: background-color 0.2s;
-  }
-
-  &::before {
-    top: -15px;
-    left: 0;
-  }
-
-  &::after {
-    left: 15px;
-    top: 0;
-  }
-
-  span {
-    position: relative;
-    z-index: 1;
-    transform: rotate(45deg);
-    color: white;
-    font-weight: bold;
-    font-size: 1.1rem;
-    display: block;
-    margin-top: -2px;
-    margin-left: 2px;
-  }
-
-  &:hover {
-    background-color: #ff758f;
-    transform: rotate(-45deg) scale(1.1);
-    text-decoration: none;
-    &::before, &::after {
-      background-color: #ff758f;
-    }
-  }
-`;
 
 const Section = styled.div`
   padding: 80px 0;
@@ -149,40 +109,19 @@ const InfoCard = styled(Card)`
 
 
 function MainPage() {
-  const [showHearts, setShowHearts] = React.useState(true);
-  const [isFading, setIsFading] = React.useState(false);
 
-  React.useEffect(() => {
-    // Stage 1: Start fading after 5 seconds
-    const fadeTimer = setTimeout(() => {
-      setIsFading(true);
-    }, 5000);
-
-    // Stage 2: Stop rendering after fade finishes (2 seconds later)
-    const removeTimer = setTimeout(() => {
-      setShowHearts(false);
-    }, 7000);
-
-    return () => {
-      clearTimeout(fadeTimer);
-      clearTimeout(removeTimer);
-    };
-  }, []);
 
   return (
     <>
-      {showHearts && <HeartEffect isFading={isFading} />}
+
       <NavBar />
 
       <HeroSection>
         <Container>
-          <HeroTitle>Welcome to BCC STUCO 2025~2026!</HeroTitle>
-          <HeroSubtitle>Empowering Students, Building Community</HeroSubtitle>
+          <HeroTitle>Welcome to BCC STUCO 2026~2027!</HeroTitle>
+          <HeroSubtitle>BCC's Very Own Student Council!</HeroSubtitle>
           <ButtonContainer>
             <StyledButton size="lg" href="/about">Learn More</StyledButton>
-            <HeartButton href="/secret_valentines">
-              <span>?</span>
-            </HeartButton>
           </ButtonContainer>
         </Container>
       </HeroSection>
@@ -191,10 +130,10 @@ function MainPage() {
 
       <Section>
         <Container>
-          <SectionTitle>About STUCO 2025~2026</SectionTitle>
+          <SectionTitle>About STUCO 2026~2027</SectionTitle>
           <Row>
-            <Col md={6}>
-              <img src="/about_bcc_stock.jpg" alt="About BCC" className="img-fluid mb-4" />
+            <Col md={6} className="d-flex align-items-center justify-content-center">
+              <img src="/Wally.png" alt="BCC Logo" className="img-fluid mb-4" style={{ maxWidth: "300px", width: "100%", height: "auto" }} />
             </Col>
             <Col md={6}>
               <h3 style={{ fontFamily: "Cinzel", color: "#1d3557" }}>Our Mission</h3>
