@@ -24,6 +24,7 @@ function App() {
           <Route path="/events/:id" element={<EventDetails />} />
           <Route path="/reports" element={<WeeklyReports />} />
           <Route path="/about" element={<About />} />
+          <Route path="/suggestion" element={<About />} />
           <Route path="/forum" element={<QnA />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="/secret_valentines" element={<SecretPage />} />

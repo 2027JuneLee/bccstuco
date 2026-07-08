@@ -51,6 +51,7 @@ function NavBar() {
             <StyledNavLink href="/events">Events</StyledNavLink>
             <StyledNavLink href="/forum">Q&A</StyledNavLink>
             {/*<StyledNavLink href="/about">About</StyledNavLink>*/}
+            <StyledNavLink href="/suggestion">Suggestions</StyledNavLink>
             <StyledNavLink href="/clubs">Clubs</StyledNavLink>
             <StyledNavLink href="/archives">Archive</StyledNavLink>
           </Nav>

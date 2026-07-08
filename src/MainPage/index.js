@@ -72,8 +72,6 @@ const ButtonContainer = styled.div`
   margin-top: 30px;
 `;
 
-
-
 const Section = styled.div`
   padding: 80px 0;
   background-color: ${(props) => (props.bg === "light" ? "#f8f9fa" : "white")};
@@ -106,14 +104,9 @@ const InfoCard = styled(Card)`
   }
 `;
 
-
-
 function MainPage() {
-
-
   return (
     <>
-
       <NavBar />
 
       <HeroSection>
@@ -125,8 +118,6 @@ function MainPage() {
           </ButtonContainer>
         </Container>
       </HeroSection>
-
-
 
       <Section>
         <Container>
@@ -141,7 +132,7 @@ function MainPage() {
                 Welcome to BCC's Student Council website!
                 BCC's very own Student Council (STUCO) is working hard to represent BCC students, organize fun events, and promote BCC's core values and spirit! This website aims to showcase STUCO's activities and events, and act as a platform for students and BCC clubs to connect and cooperate with STUCO members!
               </p>
-              <StyledButton href="/about">About STUCO</StyledButton>
+              <StyledButton href="/suggestion">Submit a Suggestion</StyledButton>
             </Col>
           </Row>
         </Container>
@@ -154,11 +145,11 @@ function MainPage() {
             <Col md={4} className="mb-4">
               <InfoCard>
                 <Card.Body className="text-center p-4">
-                  <Card.Title>About</Card.Title>
+                  <Card.Title>Suggestion Box</Card.Title>
                   <Card.Text>
-                    Learn about STUCO's mission, who we are, and why we made this website.
+                    Have ideas for events or school improvements? Submit your suggestions directly to STUCO!
                   </Card.Text>
-                  <Button variant="outline-primary" href="/about">Learn More</Button>
+                  <Button variant="outline-primary" href="/suggestion">Submit Suggestion</Button>
                 </Card.Body>
               </InfoCard>
             </Col>
